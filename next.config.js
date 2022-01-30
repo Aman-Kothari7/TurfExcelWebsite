@@ -1,3 +1,9 @@
 module.exports = {
-  reactStrictMode: true,
-}
+  env: {
+    razorpayKey: "",
+  },
+
+  images: {
+    domains: ["localhost"],
+  },
+};
