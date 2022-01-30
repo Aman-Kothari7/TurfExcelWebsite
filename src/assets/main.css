@@ -32,7 +32,7 @@ html {
   -moz-tab-size: 4; /* 3 */
   -o-tab-size: 4;
      tab-size: 4; /* 3 */
-  font-family: Nunito, sans-serif; /* 4 */
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; /* 4 */
 }
 
 /*
@@ -107,7 +107,7 @@ code,
 kbd,
 samp,
 pre {
-  font-family: ; /* 1 */
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; /* 1 */
   font-size: 1em; /* 2 */
 }
 
@@ -424,6 +424,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
 }
+.static {
+  position: static;
+}
 .fixed {
   position: fixed;
 }
@@ -433,6 +436,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .relative {
   position: relative;
 }
+.bottom-0 {
+  bottom: 0px;
+}
 .top-28 {
   top: 7rem;
 }
@@ -441,9 +447,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .top-0 {
   top: 0px;
-}
-.bottom-0 {
-  bottom: 0px;
 }
 .left-0 {
   left: 0px;
@@ -481,12 +484,19 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-left: auto;
   margin-right: auto;
 }
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
 .mx-1 {
   margin-left: 0.25rem;
   margin-right: 0.25rem;
 }
 .mt-10 {
   margin-top: 2.5rem;
+}
+.mr-2 {
+  margin-right: 0.5rem;
 }
 .mr-0 {
   margin-right: 0px;
@@ -509,11 +519,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .ml-2 {
   margin-left: 0.5rem;
 }
-.mr-2 {
-  margin-right: 0.5rem;
-}
 .mb-32 {
   margin-bottom: 8rem;
+}
+.mt-12 {
+  margin-top: 3rem;
 }
 .mt-20 {
   margin-top: 5rem;
@@ -599,6 +609,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .max-w-xs {
   max-width: 18.5rem;
 }
+.max-w-xl {
+  max-width: 36rem;
+}
 .max-w-md {
   max-width: 28rem;
 }
@@ -665,9 +678,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .border-4 {
   border-width: 4px;
 }
-.bg-onPrimary-txt {
+.bg-primary-bg {
   --tw-bg-opacity: 1;
-  background-color: rgb(0 139 37 / var(--tw-bg-opacity));
+  background-color: rgb(223 225 234 / var(--tw-bg-opacity));
 }
 .bg-secondary-bg {
   --tw-bg-opacity: 1;
@@ -721,6 +734,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .pb-10 {
   padding-bottom: 2.5rem;
 }
+.pb-4 {
+  padding-bottom: 1rem;
+}
 .pt-2 {
   padding-top: 0.5rem;
 }
@@ -738,6 +754,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .align-middle {
   vertical-align: middle;
+}
+.font-primary {
+  font-family: 'Noto Serif', serif;
+}
+.font-secondary {
+  font-family: 'Open Sans', sans-serif;
 }
 .text-3xl {
   font-size: 1.875rem;
@@ -785,6 +807,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-text-opacity: 1;
   color: rgb(161 233 219 / var(--tw-text-opacity));
 }
+.text-slate-400 {
+  --tw-text-opacity: 1;
+  color: rgb(148 163 184 / var(--tw-text-opacity));
+}
 .text-link {
   --tw-text-opacity: 1;
   color: rgb(255 245 182 / var(--tw-text-opacity));
@@ -796,6 +822,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-primary-bg {
   --tw-text-opacity: 1;
   color: rgb(223 225 234 / var(--tw-text-opacity));
+}
+.text-secondary-bg {
+  --tw-text-opacity: 1;
+  color: rgb(71 95 43 / var(--tw-text-opacity));
 }
 .underline {
   -webkit-text-decoration-line: underline;

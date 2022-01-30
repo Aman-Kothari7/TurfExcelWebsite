@@ -32,7 +32,9 @@ function Section(props) {
         className={`max-w-7xl w-full relative z-10 m-auto ${props.className}`}
       >
         {props.secTitle && (
-          <h2 className={`text-center text-3xl md:text-5xl relative z-10 `}>
+          <h2
+            className={`text-center text-3xl md:text-5xl relative z-10 font-primary `}
+          >
             {props.secTitle}
           </h2>
         )}

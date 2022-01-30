@@ -6,6 +6,7 @@ import CarouselGroup from "../src/component/Carousel/Carousel";
 import Layout from "../src/containers/Layout";
 import Section from "../src/component/Section/Section";
 import Button from "../src/component/Button/Button";
+import { SEO } from "../src/utils/constant";
 
 const videos = [
   { link: "./videos/vid1.mp4" },
@@ -27,7 +28,7 @@ const facilitiesContent = [
   { img: "./img/png/certified1.jpeg", title: "Volleyball" },
 ];
 
-const secondaryTextStyle = " text-lg md:text-2xl ";
+const secondaryTextStyle = " text-lg md:text-2xl";
 
 // const videoStyle = {
 //   width: "100vw",
@@ -59,7 +60,7 @@ export default function Home() {
   };
 
   return (
-    <Layout>
+    <Layout title="Turf Excel Sports" desc={SEO.DESC}>
       <CarouselGroup
         autoPlay
         selectedItem={currBgVid}
@@ -95,11 +96,11 @@ export default function Home() {
       <div className="absolute top-0  flex w-full align-middle justify-center items-center  h-screen">
         <div className="flex flex-col mx-4 justify-between h-3/6 text-center w-full m-auto">
           <div className="">
-            <h2 className=" text-4xl  md:text-7xl  text-primary-txt">
+            <h2 className=" text-4xl  md:text-7xl font-primary text-primary-txt">
               Turf Excel Sports Arena
             </h2>
             <p
-              className={`text-secondary-txt text-lg md:text-2xl ${secondaryTextStyle}`}
+              className={`text-secondary-txt text-lg md:text-2xl mt-4 ${secondaryTextStyle}`}
             >
               Premium sports experience at an affordable price
             </p>
@@ -217,11 +218,11 @@ export default function Home() {
         secTitle="Join Us For Events!"
         id="events"
       >
-        <p className="text-center mx-auto text-secondary-bg max-w-xl">
+        <p className="text-center mx-auto text-secondary-bg max-w-xl my-4">
           For all your queries regarding corporate events or bulk bookings drop
           in your email and we will get in touch with you.
         </p>
-        <div className=" flex flex-col md:flex-row max-w-md sm:mx-auto  mt-10 mx-4 ">
+        <div className=" flex flex-col md:flex-row max-w-md sm:mx-auto  mt-12 mx-4 ">
           <div className="w-full md:w-3/4 ">
             <input
               placeholder="Email Id"
@@ -259,7 +260,7 @@ export default function Home() {
             <h2 className="text-xl font-bold text-secondary-bg">
               TurfExcel Sports Arena
             </h2>
-            <p className=" text-sm text-secondary-bg max-w-xs">
+            <p className=" text-sm text-secondary-bg  max-w-xs">
               SUPREME BUSINESS PARK, B Wing,12th Floor, Hiranandani Gardens,
               Powai, Mumbai, Maharashtra 400076
             </p>

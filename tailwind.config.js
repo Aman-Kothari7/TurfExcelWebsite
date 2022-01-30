@@ -291,9 +291,8 @@ module.exports = {
         DEFAULT: "1",
       },
       fontFamily: {
-        sans: ["Nunito, sans-serif"],
-        serif: ["DM Serif Display, serif"],
-        mono: [],
+        primary: "'Noto Serif', serif",
+        secondary: "'Open Sans', sans-serif",
       },
       fontSize: {
         xxs: ["0.65rem", { lineHeight: "1rem" }],

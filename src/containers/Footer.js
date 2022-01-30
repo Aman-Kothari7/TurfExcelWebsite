@@ -9,19 +9,19 @@ const socialMedia = [
 
 const Footer = () => {
   return (
-    <div className="pt-20  bottom-0 relative text-secondary-txt bg-primary-bg">
+    <div className="pt-20  bottom-0 relative  text-secondary-txt bg-primary-bg">
       <img
         className=" md:h-20 w-full"
         src="./img/svg/top-ground.png"
         alt="ground"
       />
-      <h2 className="text-3xl md:text-4xl w-full text-center absolute top-28">
+      <h2 className="text-3xl md:text-4xl w-full text-center absolute font-primary top-28">
         Contact Us
       </h2>
       <div className="w-full bg-secondary-bg">
         <div className="grid p-4 md:p-8 pt-20  max-w-2xl m-auto justify-between grid-cols-1 md:grid-cols-2">
           <div className="md:mx-auto">
-            <h3 className="">ADDRESS</h3>
+            <h3 className="font-primary">ADDRESS</h3>
             <p className="text-xs text-primary-txt max-w-sm">
               M/S TURFEXCEL SPORTS LLP. 406 4th Floor VakraTunda Corporate
               Park,Off Aarey Road, Near Udupi Hotel, Goregoan East Mumbai
@@ -29,7 +29,7 @@ const Footer = () => {
             </p>
           </div>
           <div className="md:mx-auto md:mt-0 mt-10">
-            <h3 className="">EVENT BOOKING</h3>
+            <h3 className="font-primary">EVENT BOOKING</h3>
             <p className="text-xs text-primary-txt">
               Phone: 0987654322 <br />
               Phone: 0987654322
@@ -55,9 +55,19 @@ const Footer = () => {
           </div>
           <div className="text-center mt-10 md:mt-0 md:text-right underline ">
             <Link href="#">
-              <a className="hover:text-link">All Rights Reserved</a>
+              <a className="hover:text-link"> © All Rights Reserved</a>
             </Link>
           </div>
+        </div>
+        <div className="w-full text-right  pb-4">
+          <Link href="https://premjethwa.com">
+            <a
+              target="_blank"
+              className="hover:text-link mr-2 underline text-slate-400 text-right"
+            >
+              Developed By Prem Jethwa
+            </a>
+          </Link>
         </div>
       </div>
     </div>

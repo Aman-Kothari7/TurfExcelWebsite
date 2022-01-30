@@ -4,4 +4,11 @@ export const SCREEN = {
 
 export const PAGE_URL = "http://localhost:5001";
 
-console.log(">>> process.env.NODE_ENV", process.env.NODE_ENV);
+export const SEO = {
+  DESC: "Premium sports experience at an affordable price",
+  TITLE: "Turf Excel Sports Arena",
+  NAME: "Turf Excel Sports Arena",
+  PAGE_URL: "#",
+  ADDRESS:
+    "TurfExcel Sports Arena, SUPREME BUSINESS PARK, B Wing,12th Floor, Hiranandani Gardens, Powai, Mumbai, Maharashtra 400076",
+};
