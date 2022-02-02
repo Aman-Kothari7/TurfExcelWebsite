@@ -19,6 +19,12 @@ class Layout extends React.Component {
           ></meta>
           <link rel="icon" type="image/svg+xml" href="favicon.svg" />
           <link rel="icon" type="image/png" href="favicon.png" />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Noto+Serif&family=Playfair+Display&family=Roboto&display=swap"
+            rel="stylesheet"
+          />
 
           <title>{`${this.props.title}`}</title>
           <meta
@@ -64,7 +70,10 @@ class Layout extends React.Component {
           </script>
         </Head>
 
-        <body className="bg-main-bg min-h-screen min-w-screen relative font-secondary font-black">
+        <body
+          style={{ fontFamily: "'Roboto', sans-serif" }}
+          className="bg-main-bg min-h-screen min-w-screen tracking-wider relative font-secondary font-black"
+        >
           <Header />
 
           <div className="min-h-screen">{this.props.children}</div>

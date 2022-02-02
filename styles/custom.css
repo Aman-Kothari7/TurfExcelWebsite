@@ -1,8 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Serif&family=Open+Sans:wght@300&display=swap");
-
 html {
   scroll-behavior: smooth;
-  color: #475f2b;
+  /* color: #d0d5e6; */
 }
 
 .hero-videos {

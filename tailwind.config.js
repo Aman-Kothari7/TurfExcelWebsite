@@ -24,9 +24,9 @@ module.exports = {
         xxl: "1600px",
       },
       colors: {
-        main: { bg: "#bdc2d8" },
+        main: { bg: "#ccd1e8" }, //#bdc2d8
         primary: {
-          bg: "#dfe1ea",
+          bg: "#bdc2d8", //#ccd1e8
           txt: "#a1e9db",
         },
         secondary: { bg: "#475f2b", txt: "#f0fff7" },
@@ -291,7 +291,7 @@ module.exports = {
         DEFAULT: "1",
       },
       fontFamily: {
-        primary: "'Noto Serif', serif",
+        primary: "'Playfair Display', serif",
         secondary: "'Open Sans', sans-serif",
       },
       fontSize: {

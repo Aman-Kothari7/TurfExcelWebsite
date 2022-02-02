@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Link from "next/link";
-import Image from "next/image";
 import { useState } from "react";
 import CarouselGroup from "../src/component/Carousel/Carousel";
 import Layout from "../src/containers/Layout";
@@ -40,7 +39,7 @@ const secondaryTextStyle = " text-lg md:text-2xl";
 //   zIndex: "-1",
 // };
 
-export default function Home() {
+const Home = () => {
   const [currBgVid, setCurrBgVid] = useState(0);
 
   const gotoNext = () => {
@@ -71,13 +70,20 @@ export default function Home() {
         interval={10000}
         // stopOnHover={true}
       >
-        {videos.map((vid) => {
+        {videos.map((vid, i) => {
           return (
             <>
               {/* w-screen h-full max-h-screen overflow-hidden object-cover
                 bottom-0 left-0 */}
 
-              <video className="hero-videos" autoPlay muted loop playsInline>
+              <video
+                key={i + "hero-videos"}
+                className="hero-videos"
+                autoPlay
+                muted
+                loop
+                playsInline
+              >
                 <source src={vid.link} type="video/mp4" />
                 {/* <source src="./videos/vid1.ogg" type="video/ogg" /> */}
                 Your browser does not support the video tag.
@@ -90,7 +96,7 @@ export default function Home() {
         className="absolute top-0 bg-radial w-full h-screen"
         style={{
           background:
-            " radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(50,144,126,0.896796218487395) 0%, rgba(0,0,0,0.9500175070028011) 100%)",
+            " radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(50,144,126,0.40) 0%, rgba(0,0,0,0.9500175070028011) 100%)",
         }}
       ></div>
       <div className="absolute top-0  flex w-full align-middle justify-center items-center  h-screen">
@@ -126,11 +132,15 @@ export default function Home() {
       </div>
 
       {/* --- Certified For --- */}
-      <Section className="md:-mt-10" containerStyle="" secTitle="Certified For">
+      <Section
+        className="md:-mt-10 text-6xl"
+        containerStyle="text-6xl"
+        secTitle="Certified For"
+      >
         <div className="grid grid-cols-2 lg:grid-cols-4 max-w-7xl m-auto justify-around mt-10 gap-4">
-          {certifiedContent.map((certified) => {
+          {certifiedContent.map((certified, i) => {
             return (
-              <div className="relative text-center">
+              <div className="relative text-center" key={certified.title + i}>
                 <img
                   src={certified.img}
                   alt={certified.title}
@@ -150,7 +160,7 @@ export default function Home() {
 
       {/* --- Booking Form --- */}
       <Section
-        className="m-auto text-center text-primary-bg"
+        className="m-auto text-center text-secondary-txt"
         id="booking-form"
         secTitle="Booking Form"
         containerStyle=""
@@ -190,19 +200,22 @@ export default function Home() {
       {/* --- Facilities --- */}
       <Section className="" secTitle="Facilities" containerStyle="">
         <div className="grid grid-container--fit mx-4 max-w-6xl m-auto justify-center mt-10 gap-4">
-          {facilitiesContent.map((certified) => {
+          {facilitiesContent.map((facility, i) => {
             return (
-              <div className="relative object-cover text-center">
+              <div
+                className="relative object-cover text-center"
+                key={facility.title + i}
+              >
                 <img
-                  src={certified.img}
-                  alt={certified.title}
+                  src={facility.img}
+                  alt={facility.title}
                   className="w-full h-40 object-cover rounded-2xl"
                 />
                 <div className="w-full h-full rounded-2xl border-4 bg-black opacity-40 center-positions absolute"></div>
                 <div
                   className={`text-center text-primary-txt bottom-2 left-4  sm:bottom-6 sm:left-8  absolute ${secondaryTextStyle} `}
                 >
-                  {certified.title}
+                  {facility.title}
                 </div>
               </div>
             );
@@ -244,6 +257,7 @@ export default function Home() {
         secTitle="Location"
         containerStyle=" bg-primary-bg mt-20 pt-10"
         removePaddingTop
+        id="location"
       >
         <div className="flex mx-4 mt-10 ">
           <div className="w-full md:w-9/12">
@@ -252,7 +266,7 @@ export default function Home() {
               width="100%"
               height="450"
               className=" border-4 rounded-lg"
-              allowfullscreen=""
+              // allowFullScreen=""
               loading="lazy"
             ></iframe>
           </div>
@@ -269,4 +283,6 @@ export default function Home() {
       </Section>
     </Layout>
   );
-}
+};
+
+export default Home;

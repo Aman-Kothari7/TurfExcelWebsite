@@ -30,10 +30,24 @@ const Footer = () => {
           </div>
           <div className="md:mx-auto md:mt-0 mt-10">
             <h3 className="font-primary">EVENT BOOKING</h3>
-            <p className="text-xs text-primary-txt">
-              Phone: 0987654322 <br />
-              Phone: 0987654322
-            </p>
+            <div className="text-xs text-primary-txt">
+              <a className="hover:underline" href="tel:0987654322">
+                {" "}
+                Phone: 0987654322{" "}
+              </a>
+              <br />
+              <a className="hover:underline" href="tel:0987654322">
+                {" "}
+                Phone: 0987654322
+              </a>
+              <br />
+              <a
+                className="hover:underline"
+                href="mailto:turfexcel.in@gmail.com "
+              >
+                turfexcel.in@gmail.com{" "}
+              </a>
+            </div>
           </div>
         </div>
         <div className="m-auto py-10 justify-center gap-3 flex text-center">
@@ -59,7 +73,7 @@ const Footer = () => {
             </Link>
           </div>
         </div>
-        <div className="w-full text-right  pb-4">
+        <div className="w-full text-center  pb-4">
           <Link href="https://premjethwa.com">
             <a
               target="_blank"

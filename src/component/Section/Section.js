@@ -1,9 +1,9 @@
 function Section(props) {
   return (
     <section
-      className={`w-full relative text-onPrimary-txt ${props.containerStyle} ${
-        props.removePaddingTop ? "" : " pt-10 pb-10 md:pt-28 md:pb-28"
-      }`}
+      className={`w-full relative text-lg md:text-xl text-onPrimary-txt ${
+        props.containerStyle
+      } ${props.removePaddingTop ? "" : " pt-10 pb-10 md:pt-28 md:pb-28"}`}
       id={props.id}
       // style={{
       //   ...(props.bgImage && {
@@ -38,7 +38,7 @@ function Section(props) {
             {props.secTitle}
           </h2>
         )}
-        <div className="text-lg md:text-xl m-auto">{props.children}</div>
+        <div className="m-auto">{props.children}</div>
       </div>
     </section>
   );

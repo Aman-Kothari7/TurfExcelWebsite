@@ -1,5 +1,6 @@
 export const SCREEN = {
   SM: "640",
+  MD: "768",
 };
 
 export const PAGE_URL = "http://localhost:5001";
