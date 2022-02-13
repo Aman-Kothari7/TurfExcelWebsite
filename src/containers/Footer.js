@@ -1,10 +1,10 @@
 import Link from "next/link";
 
 const socialMedia = [
-  { link: "#", img: "./img/svg/social/instagram.svg", name: "" },
-  { link: "#", img: "./img/svg/social/facebook.png", name: "" },
-  { link: "#", img: "./img/svg/social/instagram.svg", name: "" },
-  { link: "#", img: "./img/svg/social/facebook.png", name: "" },
+  { link: "#", img: "/img/svg/social/instagram.svg", name: "" },
+  { link: "#", img: "/img/svg/social/facebook.png", name: "" },
+  { link: "#", img: "/img/svg/social/instagram.svg", name: "" },
+  { link: "#", img: "/img/svg/social/facebook.png", name: "" },
 ];
 
 const Footer = () => {
@@ -12,7 +12,7 @@ const Footer = () => {
     <div className="pt-20  bottom-0 relative  text-secondary-txt bg-primary-bg">
       <img
         className=" md:h-20 w-full"
-        src="./img/svg/top-ground.png"
+        src="/img/svg/top-ground.png"
         alt="ground"
       />
       <h2 className="text-3xl md:text-4xl w-full text-center absolute font-primary top-28">

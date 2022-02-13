@@ -16,7 +16,7 @@ class Header extends React.Component {
     this.contactList = [
       {
         name: "whatsapp",
-        link: "whatsapp://send?id=9321455375&text=hiTurfExcel",
+        link: "https://wa.me/+919321455375?lang=en",
         img: "./img/svg/floating-btn/whatsapp.svg",
       },
       {
@@ -48,7 +48,7 @@ class Header extends React.Component {
       <React.Fragment>
         <div className="">
           <div
-            className={`font-medium absolute z-50 text-5xl w-full flex justify-center items-center right-0 top-0  mr-0 mt-4`}
+            className={`font-medium absolute z-20 text-5xl w-full flex justify-center items-center right-0 top-0  mr-0 mt-4`}
             ref={this.myRef}
             onScroll={() => this.handleScroll()}
           >
@@ -63,10 +63,10 @@ class Header extends React.Component {
                       <img
                         src={
                           this.state.globalWindow?.innerWidth > SCREEN.MD
-                            ? `${PAGE_URL}/img/svg/full-logo.svg`
-                            : `${PAGE_URL}/img/svg/shot-logo.svg`
+                            ? `/img/svg/full-logo.svg`
+                            : `/img/svg/shot-logo.svg`
                         }
-                        alt="Geosoft Logo"
+                        alt="turfExcel Logo"
                         width={
                           this.state.globalWindow?.innerWidth > SCREEN.MD
                             ? `170`
@@ -105,15 +105,15 @@ class Header extends React.Component {
             </div>
 
             <button
-              className={`top-0 z-10 right-0 mr-6 fixed  text-sm  transform duration-1000 block mt-8 lg:hidden pl-10`}
-              // onBlur={() =>
-              //   this.setState({
-              //     isRightMenuOpen: false,
-              //   })
-              // }
+              className={`top-0 z-10 outline-none right-0 mr-6 fixed  text-sm  transform duration-1000 block mt-8 lg:hidden pl-10 remove-highlight`}
+              onBlur={() =>
+                this.setState({
+                  isRightMenuOpen: false,
+                })
+              }
             >
               <div
-                className="flex justify-end mb-2"
+                className="flex justify-end mb-2 "
                 onClick={() =>
                   this.setState({
                     isRightMenuOpen: !this.state.isRightMenuOpen,
@@ -123,10 +123,10 @@ class Header extends React.Component {
                 <img
                   src={
                     this.state.isRightMenuOpen
-                      ? `${PAGE_URL}/img/svg/cancel-icon.svg`
-                      : `${PAGE_URL}/img/svg/ham-menu.svg`
+                      ? `/img/svg/cancel-icon.svg`
+                      : `/img/svg/ham-menu.svg`
                   }
-                  alt="Geosoft Logo"
+                  alt="turfExcel Logo"
                   width={this.state.isRightMenuOpen ? `20` : `30`}
                   height="30"
                 />
@@ -134,7 +134,7 @@ class Header extends React.Component {
               <span
                 className={`${
                   this.state.isRightMenuOpen
-                    ? "block bg-secondary-txt cursor-pointer text-onPrimary-txt rounded-md  ml-1"
+                    ? "block bg-secondary-txt text-lg  cursor-pointer text-onPrimary-txt rounded-md  ml-1"
                     : "hidden"
                 } }`}
               >
@@ -162,7 +162,7 @@ class Header extends React.Component {
             </button>
             {/* Floating Icons */}
             <button
-              className="w-full bottom-20 z-10 max-w-7xl m-auto h-10 fixed"
+              className="w-full bottom-20 z-10 max-w-7xl m-auto h-10 fixed outline-none"
               onBlur={() =>
                 this.setState({
                   isFloatingContactOpen: false,
@@ -171,16 +171,21 @@ class Header extends React.Component {
             >
               <div className="absolute right-4 -bottom-11 bg-primary-txt rounded-t-full rounded-b-full duration-500 ease-in-out">
                 {this.contactList.map((contact) => {
-                  let widthAndHeight = "w-16 h-16";
                   return (
                     <Link href={contact.link}>
                       <div
                         className={`bg-primary-txt  ${
-                          this.state.isFloatingContactOpen ? "" : "fixed"
+                          this.state.isFloatingContactOpen
+                            ? ""
+                            : "opacity-100 fixed"
                         } hover:bg-link rounded-full `}
                       >
                         <img
-                          className={`p-4 ${widthAndHeight}`}
+                          className={`p-4 w-16 h-16 ${
+                            !this.state.isFloatingContactOpen
+                              ? "hidden"
+                              : "block"
+                          }`}
                           src={contact.img}
                           alt={contact.name}
                         />
@@ -193,11 +198,12 @@ class Header extends React.Component {
                 </div>
               </div>
               <div
-                onClick={() =>
+                onClick={() => {
                   this.setState({
                     isFloatingContactOpen: !this.state.isFloatingContactOpen,
-                  })
-                }
+                  });
+                  this.forceUpdate();
+                }}
                 className="w-16 h-16 bg-primary-txt right-4 absolute hover:bg-link rounded-full"
               >
                 <img

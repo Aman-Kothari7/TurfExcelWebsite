@@ -4,7 +4,7 @@
   "url": "https://turf-excel.web.app/",
   "scripts": {
     "dev": "npm run watch:css && next -p 5001",
-    "build": "npm run build:css && next build",
+    "build": "next build && next export",
     "start": "next start -p 5001",
     "build:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
     "watch:css": "postcss src/assets/tailwind.css -o src/assets/main.css",

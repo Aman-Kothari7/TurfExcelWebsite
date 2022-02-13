@@ -6,9 +6,9 @@ import Button from "../src/component/Button/Button";
 import Section from "../src/component/Section/Section";
 
 const videos = [
-  { link: "./videos/vid1.mp4" },
-  { link: "./videos/vid2.mp4" },
-  { link: "./videos/vid3.mp4" },
+  { link: "/videos/vid1.mp4" },
+  { link: "/videos/vid2.mp4" },
+  { link: "/videos/vid3.mp4" },
 ];
 const secondaryTextStyle = " text-lg md:text-2xl";
 
@@ -76,10 +76,10 @@ function About(props) {
           /> */}
           <div className="hidden md:flex max-w-6xl w-full  m-auto justify-between">
             <div onClick={gotoPrev} className="ml-2">
-              <img src="./img/svg/left-arrow.png" />
+              <img src="/img/svg/left-arrow.png" />
             </div>
             <div onClick={gotoNext} className="rotate-180 mr-2">
-              <img src="./img/svg/left-arrow.png" />
+              <img src="/img/svg/left-arrow.png" />
             </div>
           </div>
 

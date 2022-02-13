@@ -6,6 +6,9 @@ import Layout from "../src/containers/Layout";
 import Section from "../src/component/Section/Section";
 import Button from "../src/component/Button/Button";
 import { SEO } from "../src/utils/constant";
+import Popup from "../src/component/Popup/Popup";
+import Input from "../src/component/Input/Input";
+import * as validator from "../src/utils/validator.js";
 
 const videos = [
   { link: "./videos/vid1.mp4" },
@@ -16,15 +19,15 @@ const videos = [
 const certifiedContent = [
   { img: "./img/png/certified1.jpeg", title: "Football" },
   { img: "./img/png/certified2.jpeg", title: "Cricket" },
-  { img: "./img/png/certified1.jpeg", title: "Volleyball" },
+  { img: "./img/png/certified1.jpeg", title: "Tennis" },
   { img: "./img/png/certified1.jpeg", title: "Volleyball" },
 ];
 
 const facilitiesContent = [
-  { img: "./img/png/certified1.jpeg", title: "Football" },
-  { img: "./img/png/certified2.jpeg", title: "Cricket" },
-  { img: "./img/png/certified1.jpeg", title: "Volleyball" },
-  { img: "./img/png/certified1.jpeg", title: "Volleyball" },
+  { img: "./img/png/certified1.jpeg", title: "Sports Equipment" },
+  { img: "./img/png/certified2.jpeg", title: "Food and Beverages" },
+  { img: "./img/png/certified1.jpeg", title: "Washroom" },
+  { img: "./img/png/certified1.jpeg", title: "Nearby cafes/clubs" },
 ];
 
 const secondaryTextStyle = " text-lg md:text-2xl";
@@ -41,25 +44,47 @@ const secondaryTextStyle = " text-lg md:text-2xl";
 
 const Home = () => {
   const [currBgVid, setCurrBgVid] = useState(0);
+  const [isOpen, setIsOpen] = useState(0);
+  const [showFormError, setShowFormError] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    phoneNumber: "",
+    activity: "",
+    facility: "",
+    date: "",
+    email: "",
+    time: {
+      start: "",
+      end: "",
+    },
+  });
+  const [formError, setFormError] = useState({
+    name: "",
+    phoneNumber: "",
+    activity: "",
+    facility: "",
+    date: "",
+    email: "",
+    time: {
+      start: "",
+      end: "",
+    },
+  });
 
-  const gotoNext = () => {
-    if (currBgVid === videos.length - 1) {
-      setCurrBgVid(0);
-    } else {
-      setCurrBgVid(currBgVid + 1);
-    }
+  const submitForm = () => {
+    console.log(">>> formData:", formData);
+    console.log(">> allInputs Valid:", validator.isAllInputsValid());
+    setShowFormError(true);
   };
 
-  const gotoPrev = () => {
-    if (currBgVid === 0) {
-      setCurrBgVid(videos.length - 1);
-    } else {
-      setCurrBgVid(currBgVid - 1);
-    }
+  const closeModelWindow = () => {
+    setIsOpen(false);
   };
 
+  const newDate = new Date();
   return (
     <Layout title="Turf Excel Sports" desc={SEO.DESC}>
+      <Popup isOpen={isOpen} onBgClick={closeModelWindow} />
       <CarouselGroup
         autoPlay
         selectedItem={currBgVid}
@@ -102,8 +127,8 @@ const Home = () => {
       <div className="absolute top-0  flex w-full align-middle justify-center items-center  h-screen">
         <div className="flex flex-col mx-4 justify-between h-3/6 text-center w-full m-auto">
           <div className="">
-            <h2 className=" text-4xl  md:text-7xl font-primary text-primary-txt">
-              Turf Excel Sports Arena
+            <h2 className=" text-5xl  md:text-7xl font-primary text-primary-txt">
+              TurfExcel Sports Arena
             </h2>
             <p
               className={`text-secondary-txt text-lg md:text-2xl mt-4 ${secondaryTextStyle}`}
@@ -125,8 +150,9 @@ const Home = () => {
             </div>
           </div> */}
 
-          <h2 className="text-2xl  md:text-3xl text-secondary-txt">
-            Highest Rooftop Multipurpose-Turf in Mumbai !!
+          <h2 className="text-3xl  md:text-5xl text-secondary-txt">
+            Highest Rooftop Turf in{" "}
+            <span className="text-primary-txt"> Mumbai</span>
           </h2>
         </div>
       </div>
@@ -166,7 +192,7 @@ const Home = () => {
         containerStyle=""
         bgImage="./img/png/certified1.jpeg"
       >
-        <div className="grid grid-cols-1  md:grid-cols-2 m-auto w-full max-w-3xl justify-center mt-10 gap-4">
+        <div className="grid grid-cols-1 text-black  md:grid-cols-2 m-auto w-full max-w-3xl justify-center mt-10 gap-4">
           <div className="sm:hidden ">
             <Button
               className="mx-auto max-w-xs py-2 text-center rounded-full"
@@ -174,46 +200,182 @@ const Home = () => {
             />
           </div>
           <div className="mx-auto w-full max-w-xs">
-            <input className="form-control w-full rounded-full py-2  px-4" />
+            <Input
+              placeholder="Name"
+              className="w-full rounded-full py-2  px-4"
+              onChange={(e) => {
+                setFormData({ ...formData, name: e.target.value });
+                setShowFormError(false);
+              }}
+              errorMessage={validator.isNotName(formData.name)}
+              showError={showFormError}
+            />
+          </div>
+          <div className="max-w-xs w-full mx-auto ">
+            <Input
+              label="Date:"
+              placeholder=""
+              type="date"
+              className=" px-2 bg-primary-txt mx-1 outline-none rounded-full "
+              onChange={(e) => {
+                setFormData({ ...formData, date: e.target.value });
+                setShowFormError(false);
+              }}
+              min={newDate}
+              errorMessage={validator.isNotDate(formData.date)}
+              showError={showFormError}
+            />
           </div>
           <div className="mx-auto w-full max-w-xs">
-            <input className="form-control  w-full rounded-full py-2  px-4" />
+            <Input
+              placeholder="Phone Number"
+              className="w-full rounded-full py-2  px-4"
+              onChange={(e) => {
+                setFormData({ ...formData, phoneNumber: e.target.value });
+                setShowFormError(false);
+              }}
+              type="phone"
+              errorMessage={validator.isNotPhoneNumber(formData.phoneNumber)}
+              showError={showFormError}
+            />
           </div>
+          {/* <div className=" mx-auto w-full max-w-xs">
+            <Input
+              placeholder="Email: my@turfexcel.com"
+              className=" w-full rounded-full py-2  px-4"
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
+              type="email"
+            />
+          </div> */}
+
           <div className="mx-auto w-full max-w-xs">
-            <input className="form-control  w-full rounded-full py-2  px-4" />
+            {/* <Input
+              placeholder=""
+              className=" w-full rounded-full py-2  px-4"
+            /> */}
+            <select
+              name="Activity"
+              className="text-black pr-4  w-full rounded-full py-2  px-4"
+              onChange={(e) => {
+                setFormData({ ...formData, activity: e.target.value });
+                setShowFormError(false);
+              }}
+            >
+              <option value="">Activity?</option>
+              <option value="football" className="">
+                football
+              </option>
+              <option value="cricket">cricket</option>
+              <option value="tennis">tennis</option>
+              <option value="volleyball">volleyball</option>
+              <option value="photoshoot">photoshoot</option>
+              <option value="event">event</option>
+            </select>
+            {showFormError ? (
+              <p className=" text-red-300 text-md h-3">
+                {" "}
+                {validator.isNotValidActivity(formData.activity)}
+              </p>
+            ) : (
+              <p className="text-sm h-3"> &nbsp; </p>
+            )}
           </div>
-          <div className="mx-auto w-full max-w-xs">
-            <input className="form-control  w-full rounded-full py-2  px-4" />
+          <div className="hidden mx-auto w-full max-w-xs">
+            {/* <Input
+              placeholder=""
+              className=" w-full rounded-full py-2  px-4"
+            /> */}
+            <select
+              name="Activity"
+              className="text-black pr-4  w-full rounded-full py-2  px-4"
+              onChange={(e) => {
+                setFormData({ ...formData, facility: e.target.value });
+                setShowFormError(false);
+              }}
+            >
+              <option value="">Facility?</option>
+              <option value="food" className="">
+                Food and Beverages
+              </option>
+              <option value="equipment">Sports Equipment</option>
+              <option value="">None</option>
+            </select>
           </div>
-          <div className="w-full max-w-xs m-auto">
-            <Button className="w-24  py-2 rounded-full" label="send" />
+
+          <div className="mx-auto w-full max-w-xs ">
+            <Input
+              label="Start:"
+              type="time"
+              className="rounded-full px-2 bg-primary-txt outline-none"
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  time: { ...formData.time, start: e.target.value },
+                })
+              }
+              errorMessage={validator.isNotStartTime(
+                formData.time.start,
+                formData.time.end //max
+              )}
+              showError={showFormError}
+            />
+          </div>
+          <div className="mx-auto w-full max-w-xs ">
+            <Input
+              label="End: "
+              type="time"
+              className="rounded-full px-2 bg-primary-txt outline-none"
+              onChange={(e) => {
+                setFormData({
+                  ...formData,
+                  time: { ...formData.time, end: e.target.value },
+                });
+                setShowFormError(false);
+              }}
+              errorMessage={validator.isNotEndTime(
+                formData.time.end,
+                formData.time.start //min
+              )}
+              showError={showFormError}
+            />
+          </div>
+
+          <div className="w-full max-w-xs m-auto items-end justify-items-end justify-end">
+            <Button
+              className="w-24  py-2 rounded-full"
+              label="send"
+              onClick={submitForm}
+            />
           </div>
         </div>
-        <div className="sm:block hidden w-full text-center m-auto mt-10">
+        <div className="sm:block hidden w-full text-center m-auto mt-20">
           <Button
             className="mx-auto max-w-xs py-2 text-center rounded-full"
             label="View Price Chart"
+            onClick={() => setIsOpen(true)}
           />
         </div>
       </Section>
 
       {/* --- Facilities --- */}
       <Section className="" secTitle="Facilities" containerStyle="">
-        <div className="grid grid-container--fit mx-4 max-w-6xl m-auto justify-center mt-10 gap-4">
+        <div className="grid grid-container--fit justify-center mx-auto max-w-6xl m-auto mt-10 ">
           {facilitiesContent.map((facility, i) => {
             return (
               <div
-                className="relative object-cover text-center"
+                className="relative m-3 object-cover text-center"
                 key={facility.title + i}
               >
                 <img
                   src={facility.img}
                   alt={facility.title}
-                  className="w-full h-40 object-cover rounded-2xl"
+                  className="w-full h-40  object-cover rounded-2xl"
                 />
                 <div className="w-full h-full rounded-2xl border-4 bg-black opacity-40 center-positions absolute"></div>
                 <div
-                  className={`text-center text-primary-txt bottom-2 left-4  sm:bottom-6 sm:left-8  absolute ${secondaryTextStyle} `}
+                  className={`text-center text-primary-txt bottom-3 left-4  absolute ${secondaryTextStyle} `}
                 >
                   {facility.title}
                 </div>
@@ -237,9 +399,10 @@ const Home = () => {
         </p>
         <div className=" flex flex-col md:flex-row max-w-md sm:mx-auto  mt-12 mx-4 ">
           <div className="w-full md:w-3/4 ">
-            <input
+            <Input
               placeholder="Email Id"
-              className="w-full rounded-full py-2  px-4"
+              className="w-full rounded-full outline-none"
+              type="email"
             />
           </div>
           <div className="w-2/4 md:w-1/4 mt-4 md:mt-0">
