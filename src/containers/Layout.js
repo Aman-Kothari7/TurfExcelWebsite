@@ -37,7 +37,7 @@ class Layout extends React.Component {
           <meta property="og:description" content={`${this.props.desc}`} />
 
           <meta property="og:url" content={PAGE_URL} />
-          <meta property="og:site_name" content={`TURF EXCEL SPORTS`} />
+          <meta property="og:site_name" content={`TurfExcel Sports`} />
           <meta name="twitter:title" content={`${this.props.title}`} />
           <meta name="twitter:description" content={this.props.desc} />
 

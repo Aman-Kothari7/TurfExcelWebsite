@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CarouselGroup from "../src/component/Carousel/Carousel";
 import Layout from "../src/containers/Layout";
 import Section from "../src/component/Section/Section";
@@ -9,6 +9,7 @@ import { SEO } from "../src/utils/constant";
 import Popup from "../src/component/Popup/Popup";
 import Input from "../src/component/Input/Input";
 import * as validator from "../src/utils/validator.js";
+import { sendEmail, timeConvertToAmPm } from "../src/utils/utils";
 
 const videos = [
   { link: "./videos/vid1.mp4" },
@@ -30,6 +31,8 @@ const facilitiesContent = [
   { img: "./img/png/certified1.jpeg", title: "Nearby cafes/clubs" },
 ];
 
+const priceImg = "/img/png/certified1.jpeg";
+
 const secondaryTextStyle = " text-lg md:text-2xl";
 
 // const videoStyle = {
@@ -45,6 +48,7 @@ const secondaryTextStyle = " text-lg md:text-2xl";
 const Home = () => {
   const [currBgVid, setCurrBgVid] = useState(0);
   const [isOpen, setIsOpen] = useState(0);
+  const [showFormSuccessMsg, setShowFormSuccessMsg] = useState(false);
   const [showFormError, setShowFormError] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -71,10 +75,50 @@ const Home = () => {
     },
   });
 
-  const submitForm = () => {
-    console.log(">>> formData:", formData);
-    console.log(">> allInputs Valid:", validator.isAllInputsValid());
-    setShowFormError(true);
+  useEffect(async () => {
+    // process.env.fromEmail,
+    // process.env.toEmail,
+    // process.env.SERVICE_ID,
+    // process.env.TEMPLATE_ID,
+    // process.env.USER_ID,
+    // process.env.ACCESS_TOKEN,
+  });
+
+  const submitForm = async () => {
+    if (!validator.isAllInputsValid()) return setShowFormError(true);
+    const { name, phoneNumber, activity, facility, date, email, time } =
+      formData;
+
+    setShowFormSuccessMsg(true);
+    setTimeout(() => {
+      setShowFormSuccessMsg(false);
+    }, 3000);
+
+    setFormData({
+      name: "",
+      phoneNumber: "",
+      activity: "",
+      facility: "",
+      date: "",
+      email: "",
+      time: {
+        start: "",
+        end: "",
+      },
+    });
+
+    await sendEmail({
+      name,
+      phoneNumber,
+      activity,
+      facility,
+      date,
+      email,
+      time: {
+        start: timeConvertToAmPm(time.start),
+        end: timeConvertToAmPm(time.end),
+      },
+    });
   };
 
   const closeModelWindow = () => {
@@ -83,8 +127,8 @@ const Home = () => {
 
   const newDate = new Date();
   return (
-    <Layout title="Turf Excel Sports" desc={SEO.DESC}>
-      <Popup isOpen={isOpen} onBgClick={closeModelWindow} />
+    <Layout title="TurfExcel Sports" desc={SEO.DESC}>
+      <Popup isOpen={isOpen} onBgClick={closeModelWindow} img={priceImg} />
       <CarouselGroup
         autoPlay
         selectedItem={currBgVid}
@@ -197,12 +241,14 @@ const Home = () => {
             <Button
               className="mx-auto max-w-xs py-2 text-center rounded-full"
               label="View Price Chart"
+              onClick={() => setIsOpen(true)}
             />
           </div>
           <div className="mx-auto w-full max-w-xs">
             <Input
               placeholder="Name"
               className="w-full rounded-full py-2  px-4"
+              value={formData.name}
               onChange={(e) => {
                 setFormData({ ...formData, name: e.target.value });
                 setShowFormError(false);
@@ -216,6 +262,7 @@ const Home = () => {
               label="Date:"
               placeholder=""
               type="date"
+              value={formData.date}
               className=" px-2 bg-primary-txt mx-1 outline-none rounded-full "
               onChange={(e) => {
                 setFormData({ ...formData, date: e.target.value });
@@ -230,6 +277,7 @@ const Home = () => {
             <Input
               placeholder="Phone Number"
               className="w-full rounded-full py-2  px-4"
+              value={formData.phoneNumber}
               onChange={(e) => {
                 setFormData({ ...formData, phoneNumber: e.target.value });
                 setShowFormError(false);
@@ -258,6 +306,7 @@ const Home = () => {
             <select
               name="Activity"
               className="text-black pr-4  w-full rounded-full py-2  px-4"
+              value={formData.activity}
               onChange={(e) => {
                 setFormData({ ...formData, activity: e.target.value });
                 setShowFormError(false);
@@ -265,13 +314,14 @@ const Home = () => {
             >
               <option value="">Activity?</option>
               <option value="football" className="">
-                football
+                Football
               </option>
-              <option value="cricket">cricket</option>
-              <option value="tennis">tennis</option>
-              <option value="volleyball">volleyball</option>
-              <option value="photoshoot">photoshoot</option>
-              <option value="event">event</option>
+              <option value="cricket">Cricket</option>
+              <option value="tennis">Tennis</option>
+              <option value="volleyball">Volleyball</option>
+              <option value="photoShoot">Photo shoot</option>
+              <option value="event">Event</option>
+              <option value="other">Other...</option>
             </select>
             {showFormError ? (
               <p className=" text-red-300 text-md h-3">
@@ -288,7 +338,7 @@ const Home = () => {
               className=" w-full rounded-full py-2  px-4"
             /> */}
             <select
-              name="Activity"
+              name="Facility"
               className="text-black pr-4  w-full rounded-full py-2  px-4"
               onChange={(e) => {
                 setFormData({ ...formData, facility: e.target.value });
@@ -307,6 +357,7 @@ const Home = () => {
           <div className="mx-auto w-full max-w-xs ">
             <Input
               label="Start:"
+              value={formData.time.start}
               type="time"
               className="rounded-full px-2 bg-primary-txt outline-none"
               onChange={(e) =>
@@ -326,6 +377,7 @@ const Home = () => {
             <Input
               label="End: "
               type="time"
+              value={formData.time.end}
               className="rounded-full px-2 bg-primary-txt outline-none"
               onChange={(e) => {
                 setFormData({
@@ -345,11 +397,16 @@ const Home = () => {
           <div className="w-full max-w-xs m-auto items-end justify-items-end justify-end">
             <Button
               className="w-24  py-2 rounded-full"
-              label="send"
+              label="Send"
               onClick={submitForm}
             />
           </div>
         </div>
+        {showFormSuccessMsg ? (
+          <div className="">Will reach you soon!</div>
+        ) : (
+          <div className=""> &nbsp;</div>
+        )}
         <div className="sm:block hidden w-full text-center m-auto mt-20">
           <Button
             className="mx-auto max-w-xs py-2 text-center rounded-full"

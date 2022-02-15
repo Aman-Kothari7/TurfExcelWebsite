@@ -31,14 +31,12 @@ const Footer = () => {
           <div className="md:mx-auto md:mt-0 mt-10">
             <h3 className="font-primary">EVENT BOOKING</h3>
             <div className="text-xs text-primary-txt">
-              <a className="hover:underline" href="tel:0987654322">
-                {" "}
-                Phone: 0987654322{" "}
+              <a className="hover:underline" href="tel:9321455375">
+                Phone: 9321455375
               </a>
               <br />
-              <a className="hover:underline" href="tel:0987654322">
-                {" "}
-                Phone: 0987654322
+              <a className="hover:underline" href="tel:8779684728">
+                Phone: 8779684728
               </a>
               <br />
               <a

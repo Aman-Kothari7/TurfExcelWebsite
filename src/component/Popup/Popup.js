@@ -26,7 +26,7 @@ class Popup extends Component {
       top: "50%",
       transform: "translate(-50%, -50%)",
     };
-    const { onBgClick, className } = this.props;
+    const { onBgClick, className, img } = this.props;
 
     return (
       <>
@@ -34,12 +34,15 @@ class Popup extends Component {
           className={`top-0 fixed min-h-screen min-w-full z-50 opacity-75 bg-inputLabelColour  ${className}`}
           onClick={onBgClick}
         ></div>
-        <div className="absolute z-50 top-0">
+        <div className="absolute h-full z-50 top-0">
           <div
-            className=" max-w-4xl w-full py-7 px-8 rounded bg-white m-auto text-center"
+            className="md:max-w-4xl w-full max-h-half-screen rounded bg-white m-auto text-center"
             style={centerPosition}
           >
-            <img className="w-full" src="/img/png/certified1.jpeg" />
+            <img
+              className="w-full py-7 px-8 max-h-half-screen object-cover "
+              src={img}
+            />
           </div>
         </div>
       </>

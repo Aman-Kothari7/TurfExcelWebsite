@@ -4,16 +4,39 @@ import CarouselGroup from "../src/component/Carousel/Carousel";
 import { SEO } from "../src/utils/constant";
 import Button from "../src/component/Button/Button";
 import Section from "../src/component/Section/Section";
+import Popup from "../src/component/Popup/Popup";
+import Input from "../src/component/Input/Input";
 
 const videos = [
   { link: "/videos/vid1.mp4" },
   { link: "/videos/vid2.mp4" },
   { link: "/videos/vid3.mp4" },
 ];
+
+const highLightContent = [
+  { img: "/img/png/certified1.jpeg", title: "Sports Equipment" },
+  { img: "/img/png/certified2.jpeg", title: "Food and Beverages" },
+  { img: "/img/png/certified1.jpeg", title: "Washroom" },
+  { img: "/img/png/certified2.jpeg", title: "Nearby cafes/clubs" },
+  { img: "/img/png/certified1.jpeg", title: "Sports Equipment" },
+  { img: "/img/png/certified2.jpeg", title: "Food and Beverages" },
+  { img: "/img/png/certified1.jpeg", title: "Washroom" },
+  { img: "/img/png/certified2.jpeg", title: "Nearby cafes/clubs" },
+];
+
+//Styles
 const secondaryTextStyle = " text-lg md:text-2xl";
 
 function About(props) {
   const [currBgVid, setCurrBgVid] = useState(0);
+  const [isOpen, setIsOpen] = useState(0); //currHighLightImg
+  const [currHighLightImg, setCurrHighLightImg] = useState(
+    highLightContent[0].img
+  );
+
+  const closeModelWindow = () => {
+    setIsOpen(false);
+  };
 
   const gotoNext = () => {
     if (currBgVid === videos.length - 1) {
@@ -30,9 +53,21 @@ function About(props) {
       setCurrBgVid(currBgVid - 1);
     }
   };
+  const renderNextPrevBtn = () => {
+    return (
+      <div className="hidden md:flex max-w-6xl w-full  m-auto justify-between">
+        <div onClick={gotoPrev} className="ml-2">
+          <img src="/img/svg/left-arrow.png" />
+        </div>
+        <div onClick={gotoNext} className="rotate-180 mr-2">
+          <img src="/img/svg/left-arrow.png" />
+        </div>
+      </div>
+    );
+  };
   return (
-    <Layout title="Turf Excel Sports" desc={SEO.DESC}>
-      <CarouselGroup
+    <Layout title="TurfExcel Sports" desc={SEO.DESC}>
+      {/* <CarouselGroup
         autoPlay
         selectedItem={currBgVid}
         infiniteLoop
@@ -45,49 +80,124 @@ function About(props) {
         {videos.map((vid) => {
           return (
             <>
-              {/* w-screen h-full max-h-screen overflow-hidden object-cover
-                bottom-0 left-0 */}
+            
 
               <video className="hero-videos" autoPlay muted loop playsInline>
                 <source src={vid.link} type="video/mp4" />
-                {/* <source src="./videos/vid1.ogg" type="video/ogg" /> */}
+           
                 Your browser does not support the video tag.
               </video>
             </>
           );
         })}
-      </CarouselGroup>
-      <div className="absolute top-0  flex w-full align-middle justify-center items-center  h-screen">
-        <div className="flex flex-col mx-4 justify-between h-3/6 text-center w-full m-auto">
-          {/*<div className="">
-             <h2 className=" text-4xl  md:text-7xl font-primary text-primary-txt">
-              Turf Excel Sports Arena
-            </h2>
+      </CarouselGroup> */}
+      <div className="h-screen">
+        <div className="flex justify-between max-w-6xl m-auto align-middle items-center h-full w-full ">
+          {/* align-middle justify-center items-center  */}
+
+          <div className="mx-4  md:w-2/3 relative z-10">
             <p
-              className={`text-secondary-txt text-lg md:text-2xl mt-4 ${secondaryTextStyle}`}
+              className={`text-secondary-txt text-lg  md:text-2xl ${secondaryTextStyle}`}
             >
+              Premium sports experience at an affordable price Premium sports
+              experience at an affordable price Premium sports experience at an
+              affordable price Premium sports experience at an affordable price
               Premium sports experience at an affordable price
             </p>
+            <Button
+              label="Book Now"
+              link="/#booking-form"
+              className={` w-40 mt-10 md:w-52 text-lg md:text-2xl text-center rounded-full  ${secondaryTextStyle} `}
+            />
           </div>
-          <Button
-            label="Book Now"
-            link="#booking-form"
-            className={` w-40 md:w-52 text-lg md:text-2xl rounded-full  m-auto ${secondaryTextStyle} `}
-          /> */}
-          <div className="hidden md:flex max-w-6xl w-full  m-auto justify-between">
-            <div onClick={gotoPrev} className="ml-2">
-              <img src="/img/svg/left-arrow.png" />
-            </div>
-            <div onClick={gotoNext} className="rotate-180 mr-2">
-              <img src="/img/svg/left-arrow.png" />
-            </div>
+          <div className="absolute w-full h-screen right-0 top-0 ">
+            <img
+              src="/img/png/certified1.jpeg"
+              className="w-full h-full rounded-lg bottom-5"
+            />
           </div>
-
-          {/* <h2 className="text-2xl  md:text-3xl text-secondary-txt">
-            Highest Rooftop Multipurpose-Turf in Mumbai !!
-          </h2> */}
         </div>
+        <div
+          className="absolute top-0 bg-radial w-full h-screen"
+          style={{
+            background:
+              " radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(50,144,126,0.40) 0%, rgba(0,0,0,0.9500175070028011) 100%)",
+          }}
+        ></div>
       </div>
+      {/* --- Gallery --- */}
+      <Section className="" secTitle="High Lights" containerStyle="">
+        <Popup
+          isOpen={isOpen}
+          onBgClick={closeModelWindow}
+          img={currHighLightImg}
+        />
+        <div className="grid grid-container--fit justify-center mx-auto max-w-6xl m-auto mt-10 ">
+          {highLightContent.map((facility, i) => {
+            return (
+              <>
+                <div
+                  className="relative m-3 object-cover text-center"
+                  key={facility.title + i}
+                >
+                  <img
+                    src={facility.img}
+                    alt={facility.title}
+                    onClick={() => {
+                      setCurrHighLightImg(facility.img);
+                      setIsOpen(true);
+                    }}
+                    className="w-full h-40  object-cover rounded-2xl border-link border-4 sm:border-0 hover:border-4 cursor-pointer"
+                  />
+                  <div
+                    onClick={() => {
+                      setCurrHighLightImg(facility.img);
+                      setIsOpen(true);
+                    }}
+                    className=" sm:hidden text-secondary-txt w-full h-40 rounded-2xl m-auto top-0 border-4 bg-black opacity-40  absolute"
+                  >
+                    View
+                  </div>
+                  <div
+                    className={`text-center text-secondary-bg  my-2 relative z-10  ${secondaryTextStyle} `}
+                  >
+                    {facility.title}
+                  </div>
+                </div>
+              </>
+            );
+          })}
+        </div>
+      </Section>
+      {/* --- Events --- */}
+      <Section
+        className=""
+        containerStyle="mb-32 pt-10"
+        removePaddingTop
+        secTitle="Join Us For Events!"
+        id="events"
+      >
+        <p className="text-center sm:mx-auto mx-4 text-secondary-bg max-w-xl my-4">
+          For all your queries regarding corporate events or bulk bookings drop
+          in your email and we will get in touch with you.
+        </p>
+        <div className=" flex flex-col md:flex-row max-w-md sm:mx-auto  mt-12 mx-4 ">
+          <div className="w-full md:w-3/4 ">
+            <Input
+              placeholder="Email Id"
+              className="w-full rounded-full outline-none"
+              type="email"
+            />
+          </div>
+          <div className="w-2/4 md:w-1/4 mt-4 md:mt-0">
+            <Button
+              className="mx-1 w-32 py-2 text-center rounded-full"
+              label="Join Us"
+            />
+          </div>
+        </div>
+      </Section>
+
       <Section
         className=""
         secTitle="Location"

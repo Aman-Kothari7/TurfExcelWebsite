@@ -463,6 +463,7 @@ module.exports = {
         "5/6": "83.333333%",
         full: "100%",
         screen: "100vh",
+        "half-screen": "70vh",
       }),
       inset: (theme, { negative }) => ({
         auto: "auto",
@@ -549,6 +550,7 @@ module.exports = {
         ...theme("spacing"),
         full: "100%",
         screen: "100vh",
+        "half-screen": "70vh",
       }),
       maxWidth: (theme, { breakpoints }) => ({
         none: "none",
@@ -580,6 +582,7 @@ module.exports = {
         11: "176px",
         full: "100%",
         screen: "100vh",
+        "half-screen": "60vh",
       },
       minWidth: {
         0: "0px",

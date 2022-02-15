@@ -17,17 +17,17 @@ class Header extends React.Component {
       {
         name: "whatsapp",
         link: "https://wa.me/+919321455375?lang=en",
-        img: "./img/svg/floating-btn/whatsapp.svg",
+        img: "/img/svg/floating-btn/whatsapp.svg",
       },
       {
         name: "call",
-        link: "tel:0987654322",
-        img: "./img/svg/floating-btn/call.svg",
+        link: "tel:9321455375",
+        img: "/img/svg/floating-btn/call.svg",
       },
       {
         name: "email",
         link: "mailto:turfexcel.in@gmail.com",
-        img: "./img/svg/floating-btn/email.svg",
+        img: "/img/svg/floating-btn/email.svg",
       },
     ];
   }
@@ -208,7 +208,7 @@ class Header extends React.Component {
               >
                 <img
                   className="p-4 w-16 h-16 "
-                  src="./img/svg/floating-btn/contact.svg"
+                  src="/img/svg/floating-btn/contact.svg"
                   alt="contact"
                 />
               </div>
