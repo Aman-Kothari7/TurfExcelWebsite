@@ -10,6 +10,8 @@ firebase.json
 *.firebase
 *.firebaserc
 next.config.js
+*.cache
+
 
 # testing
 /coverage
