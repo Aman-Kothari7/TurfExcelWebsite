@@ -14,14 +14,14 @@ const videos = [
 ];
 
 const highLightContent = [
-  { img: "/img/png/certified1.jpeg", title: "Sports Equipment" },
-  { img: "/img/png/certified2.jpeg", title: "Food and Beverages" },
-  { img: "/img/png/certified1.jpeg", title: "Washroom" },
-  { img: "/img/png/certified2.jpeg", title: "Nearby cafes/clubs" },
-  { img: "/img/png/certified1.jpeg", title: "Sports Equipment" },
-  { img: "/img/png/certified2.jpeg", title: "Food and Beverages" },
-  { img: "/img/png/certified1.jpeg", title: "Washroom" },
-  { img: "/img/png/certified2.jpeg", title: "Nearby cafes/clubs" },
+  { img: "/img/png/certified1.jpeg", title: "" },
+  { img: "/img/png/certified2.jpeg", title: "" },
+  { img: "/img/png/certified1.jpeg", title: "" },
+  { img: "/img/png/certified2.jpeg", title: "" },
+  { img: "/img/png/certified1.jpeg", title: "" },
+  { img: "/img/png/certified2.jpeg", title: "" },
+  { img: "/img/png/certified1.jpeg", title: "" },
+  { img: "/img/png/certified2.jpeg", title: "" },
 ];
 
 //Styles
@@ -53,18 +53,23 @@ function About(props) {
       setCurrBgVid(currBgVid - 1);
     }
   };
-  const renderNextPrevBtn = () => {
-    return (
-      <div className="hidden md:flex max-w-6xl w-full  m-auto justify-between">
-        <div onClick={gotoPrev} className="ml-2">
-          <img src="/img/svg/left-arrow.png" />
-        </div>
-        <div onClick={gotoNext} className="rotate-180 mr-2">
-          <img src="/img/svg/left-arrow.png" />
-        </div>
-      </div>
-    );
-  };
+  // const renderNextPrevBtn = () => {
+  //   return (
+  //     <div
+  //       className={` md:flex max-w-6xl w-full m-auto justify-between fixed z-50 bottom-0`}
+  //     >
+  //       <div onClick={gotoPrev} className="ml-2 bg-slate-400 p-2 rounded-lg  ">
+  //         <img src="/img/svg/left-arrow.png" />
+  //       </div>
+  //       <div
+  //         onClick={gotoNext}
+  //         className="rotate-180 mr-2 bg-slate-400 p-2 rounded-lg  "
+  //       >
+  //         <img src="/img/svg/left-arrow.png" />
+  //       </div>
+  //     </div>
+  //   );
+  // };
   return (
     <Layout title="TurfExcel Sports" desc={SEO.DESC}>
       {/* <CarouselGroup
@@ -99,10 +104,13 @@ function About(props) {
             <p
               className={`text-secondary-txt text-lg  md:text-2xl ${secondaryTextStyle}`}
             >
-              Premium sports experience at an affordable price Premium sports
-              experience at an affordable price Premium sports experience at an
-              affordable price Premium sports experience at an affordable price
-              Premium sports experience at an affordable price
+              TurfExcel aims to provide a premium sports and turf experience to
+              all sports enthusiasts. TurfExcel has launched its first sports
+              arena in Powai. It is the highest rooftop sports arena in Mumbai.
+              Players can enjoy their favourite sport alongside an amazing view
+              on a certified high quality turf. Whether you play cricket,
+              football or any other sport TurfExcel will provide an unmatched
+              experience.
             </p>
             <Button
               label="Book Now"
@@ -113,7 +121,7 @@ function About(props) {
           <div className="absolute w-full h-screen right-0 top-0 ">
             <img
               src="/img/png/certified1.jpeg"
-              className="w-full h-full rounded-lg bottom-5"
+              className="w-full h-full rounded-lg bottom-5 object-cover"
             />
           </div>
         </div>
@@ -126,11 +134,12 @@ function About(props) {
         ></div>
       </div>
       {/* --- Gallery --- */}
-      <Section className="" secTitle="High Lights" containerStyle="">
+      <Section className="" secTitle="Highlights" containerStyle="">
         <Popup
           isOpen={isOpen}
           onBgClick={closeModelWindow}
           img={currHighLightImg}
+          // renderNextPrevBtn={renderNextPrevBtn}
         />
         <div className="grid grid-container--fit justify-center mx-auto max-w-6xl m-auto mt-10 ">
           {highLightContent.map((facility, i) => {

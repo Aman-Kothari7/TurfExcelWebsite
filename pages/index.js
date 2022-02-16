@@ -396,8 +396,8 @@ const Home = () => {
 
           <div className="w-full max-w-xs m-auto items-end justify-items-end justify-end">
             <Button
-              className="w-24  py-2 rounded-full"
-              label="Send"
+              className="w-32 py-2 rounded-full"
+              label="Submit"
               onClick={submitForm}
             />
           </div>

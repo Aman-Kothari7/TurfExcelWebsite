@@ -26,7 +26,7 @@ class Popup extends Component {
       top: "50%",
       transform: "translate(-50%, -50%)",
     };
-    const { onBgClick, className, img } = this.props;
+    const { onBgClick, className, img, renderNextPrevBtn } = this.props;
 
     return (
       <>
@@ -44,7 +44,8 @@ class Popup extends Component {
               src={img}
             />
           </div>
-        </div>
+        </div>{" "}
+        {renderNextPrevBtn && renderNextPrevBtn()}
       </>
     );
   };
