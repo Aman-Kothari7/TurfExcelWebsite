@@ -30,46 +30,54 @@ const secondaryTextStyle = " text-lg md:text-2xl";
 function About(props) {
   const [currBgVid, setCurrBgVid] = useState(0);
   const [isOpen, setIsOpen] = useState(0); //currHighLightImg
-  const [currHighLightImg, setCurrHighLightImg] = useState(
-    highLightContent[0].img
-  );
+  const [currHighLightImg, setCurrHighLightImg] = useState(0);
 
   const closeModelWindow = () => {
     setIsOpen(false);
   };
 
   const gotoNext = () => {
-    if (currBgVid === videos.length - 1) {
-      setCurrBgVid(0);
+    if (currHighLightImg === highLightContent.length - 1) {
+      setCurrHighLightImg(0);
     } else {
-      setCurrBgVid(currBgVid + 1);
+      setCurrHighLightImg(currHighLightImg + 1);
     }
   };
 
   const gotoPrev = () => {
-    if (currBgVid === 0) {
-      setCurrBgVid(videos.length - 1);
+    if (currHighLightImg === 0) {
+      setCurrHighLightImg(highLightContent.length - 1);
     } else {
-      setCurrBgVid(currBgVid - 1);
+      setCurrHighLightImg(currHighLightImg - 1);
     }
   };
-  // const renderNextPrevBtn = () => {
-  //   return (
-  //     <div
-  //       className={` md:flex max-w-6xl w-full m-auto justify-between fixed z-50 bottom-0`}
-  //     >
-  //       <div onClick={gotoPrev} className="ml-2 bg-slate-400 p-2 rounded-lg  ">
-  //         <img src="/img/svg/left-arrow.png" />
-  //       </div>
-  //       <div
-  //         onClick={gotoNext}
-  //         className="rotate-180 mr-2 bg-slate-400 p-2 rounded-lg  "
-  //       >
-  //         <img src="/img/svg/left-arrow.png" />
-  //       </div>
-  //     </div>
-  //   );
-  // };
+
+  const renderNextPrevBtn = () => {
+    return (
+      <div
+        className={`flex max-w-6xl w-full m-auto fixed justify-between z-50`}
+        style={{
+          transform: "translate(-50%, -50%)",
+          position: "fixed",
+          left: " 50%",
+          top: "50%",
+        }}
+      >
+        <div
+          onClick={gotoPrev}
+          className="ml-2 bg-black p-2 rounded-lg bg-opacity-50  w-10 h-16 flex align-middle"
+        >
+          <img src="/img/svg/left-arrow.png" className="w-full" />
+        </div>
+        <div
+          onClick={gotoNext}
+          className="rotate-180 mr-2 bg-black bg-opacity-50 p-2 rounded-lg  w-10 h-16 flex align-middle "
+        >
+          <img src="/img/svg/left-arrow.png" />
+        </div>
+      </div>
+    );
+  };
   return (
     <Layout title="TurfExcel Sports" desc={SEO.DESC}>
       {/* <CarouselGroup
@@ -138,29 +146,29 @@ function About(props) {
         <Popup
           isOpen={isOpen}
           onBgClick={closeModelWindow}
-          img={currHighLightImg}
-          // renderNextPrevBtn={renderNextPrevBtn}
+          img={highLightContent[currHighLightImg].img}
+          renderNextPrevBtn={renderNextPrevBtn}
         />
         <div className="grid grid-container--fit justify-center mx-auto max-w-6xl m-auto mt-10 ">
-          {highLightContent.map((facility, i) => {
+          {highLightContent.map((highL, i) => {
             return (
               <>
                 <div
                   className="relative m-3 object-cover text-center"
-                  key={facility.title + i}
+                  key={highL.title + i}
                 >
                   <img
-                    src={facility.img}
-                    alt={facility.title}
+                    src={highL.img}
+                    alt={highL.title}
                     onClick={() => {
-                      setCurrHighLightImg(facility.img);
+                      setCurrHighLightImg(i);
                       setIsOpen(true);
                     }}
-                    className="w-full h-40  object-cover rounded-2xl border-link border-4 sm:border-0 hover:border-4 cursor-pointer"
+                    className="w-full h-40  object-cover rounded-2xl border-link border-4 sm:border-0 hover:border-4 cursor-pointer shadow-2xl"
                   />
                   <div
                     onClick={() => {
-                      setCurrHighLightImg(facility.img);
+                      setCurrHighLightImg(i);
                       setIsOpen(true);
                     }}
                     className=" sm:hidden text-secondary-txt w-full h-40 rounded-2xl m-auto top-0 border-4 bg-black opacity-40  absolute"
@@ -170,7 +178,7 @@ function About(props) {
                   <div
                     className={`text-center text-secondary-bg  my-2 relative z-10  ${secondaryTextStyle} `}
                   >
-                    {facility.title}
+                    {highL.title}
                   </div>
                 </div>
               </>
@@ -220,7 +228,7 @@ function About(props) {
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.9163121558763!2d72.90584741517607!3d19.111326955826804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c7edddef8f53%3A0x9b6a54a6c1123aab!2sTurfExcel%20Sports%20Arena!5e0!3m2!1sen!2sin!4v1643439560887!5m2!1sen!2sin"
               width="100%"
               height="450"
-              className=" border-4 rounded-lg"
+              className=" border-4 rounded-lg shadow-2xl"
               // allowFullScreen=""
               loading="lazy"
             ></iframe>

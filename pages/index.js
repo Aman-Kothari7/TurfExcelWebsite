@@ -18,17 +18,17 @@ const videos = [
 ];
 
 const certifiedContent = [
-  { img: "./img/png/certified1.jpeg", title: "Football" },
-  { img: "./img/png/certified2.jpeg", title: "Cricket" },
-  { img: "./img/png/certified1.jpeg", title: "Tennis" },
-  { img: "./img/png/certified1.jpeg", title: "Volleyball" },
+  { img: "./img/football/f6.jpg", title: "Football" },
+  { img: "./img/cricket/c2.jpg", title: "Cricket" },
+  { img: "./img/tennis/t3.jpg", title: "Tennis" },
+  { img: "./img/volleyball/v3.jpg", title: "Volleyball" },
 ];
 
 const facilitiesContent = [
-  { img: "./img/png/certified1.jpeg", title: "Sports Equipment" },
-  { img: "./img/png/certified2.jpeg", title: "Food and Beverages" },
-  { img: "./img/png/certified1.jpeg", title: "Washroom" },
-  { img: "./img/png/certified1.jpeg", title: "Nearby cafes/clubs" },
+  { img: "./img/facility/fs1.jpg", title: "Sports Equipment" },
+  { img: "./img/facility/fs4.jpg", title: "Food and Beverages" },
+  { img: "./img/facility/fs3.jpg", title: "Washroom" },
+  { img: "./img/facility/fs2.jpg", title: "Nearby cafes/clubs" },
 ];
 
 const priceImg = "/img/png/certified1.jpeg";
@@ -210,15 +210,15 @@ const Home = () => {
         <div className="grid grid-cols-2 lg:grid-cols-4 max-w-7xl m-auto justify-around mt-10 gap-4">
           {certifiedContent.map((certified, i) => {
             return (
-              <div className="relative text-center" key={certified.title + i}>
+              <div className="relative text-center " key={certified.title + i}>
                 <img
                   src={certified.img}
                   alt={certified.title}
-                  className="h-32 w-32 md:h-60 md:w-60 rounded-full m-auto"
+                  className="h-32 w-32 md:h-60 md:w-60 rounded-full m-auto object-cover shadow-2xl"
                 />
-                <div className="h-32 w-32 md:h-60 md:w-60 rounded-full border-4 bg-black opacity-50  center-positions  md:block absolute"></div>
+                <div className="h-32 w-32 md:h-60 md:w-60 rounded-full border-4 bg-black opacity-30  center-positions  md:block absolute"></div>
                 <div
-                  className={`text-center text-primary-txt center-positions  md:block absolute ${secondaryTextStyle} `}
+                  className={`text-center p-1 rounded-lg bg-black bg-opacity-30 text-primary-txt center-positions  md:block absolute ${secondaryTextStyle} `}
                 >
                   {certified.title}
                 </div>
@@ -247,7 +247,7 @@ const Home = () => {
           <div className="mx-auto w-full max-w-xs">
             <Input
               placeholder="Name"
-              className="w-full rounded-full py-2  px-4"
+              className="w-full rounded-full"
               value={formData.name}
               onChange={(e) => {
                 setFormData({ ...formData, name: e.target.value });
@@ -263,7 +263,7 @@ const Home = () => {
               placeholder=""
               type="date"
               value={formData.date}
-              className=" px-2 bg-primary-txt mx-1 outline-none rounded-full "
+              className=" bg-primary-txt outline-none rounded-full "
               onChange={(e) => {
                 setFormData({ ...formData, date: e.target.value });
                 setShowFormError(false);
@@ -339,7 +339,7 @@ const Home = () => {
             /> */}
             <select
               name="Facility"
-              className="text-black pr-4  w-full rounded-full py-2  px-4"
+              className="text-black pr-4  w-full rounded-full py-2  px-4 shadow-2xl"
               onChange={(e) => {
                 setFormData({ ...formData, facility: e.target.value });
                 setShowFormError(false);
@@ -421,22 +421,48 @@ const Home = () => {
         <div className="grid grid-container--fit justify-center mx-auto max-w-6xl m-auto mt-10 ">
           {facilitiesContent.map((facility, i) => {
             return (
-              <div
-                className="relative m-3 object-cover text-center"
-                key={facility.title + i}
-              >
-                <img
-                  src={facility.img}
-                  alt={facility.title}
-                  className="w-full h-40  object-cover rounded-2xl"
-                />
-                <div className="w-full h-full rounded-2xl border-4 bg-black opacity-40 center-positions absolute"></div>
+              // <div
+              //   className="relative m-3 object-cover text-center"
+              //   key={facility.title + i}
+              // >
+              //   <img
+              //     src={facility.img}
+              //     alt={facility.title}
+              //     className="w-full h-40  object-cover rounded-2xl"
+              //   />
+              //   <div className="w-full h-full rounded-2xl border-4 bg-black opacity-40 center-positions absolute"></div>
+              //   <div
+              //     className={`text-center text-primary-txt bottom-3 left-4  absolute ${secondaryTextStyle} `}
+              //   >
+              //     {facility.title}
+              //   </div>
+              // </div>
+              <>
                 <div
-                  className={`text-center text-primary-txt bottom-3 left-4  absolute ${secondaryTextStyle} `}
+                  className="relative m-3 object-cover text-center"
+                  key={facility.title + i}
                 >
-                  {facility.title}
+                  <img
+                    src={facility.img}
+                    alt={facility.title}
+                    className="w-full h-40  object-cover rounded-2xl border-4 cursor-pointer shadow-2xl"
+                  />
+                  {/* <div
+                    onClick={() => {
+                      setCurrHighLightImg(facility.img);
+                      setIsOpen(true);
+                    }}
+                    className=" sm:hidden text-secondary-txt w-full h-40 rounded-2xl m-auto top-0 border-4 bg-black opacity-40  absolute"
+                  >
+                    View
+                  </div> */}
+                  <div
+                    className={`text-center text-secondary-bg  my-2 relative z-10  ${secondaryTextStyle} `}
+                  >
+                    {facility.title}
+                  </div>
                 </div>
-              </div>
+              </>
             );
           })}
         </div>
@@ -485,7 +511,7 @@ const Home = () => {
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.9163121558763!2d72.90584741517607!3d19.111326955826804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c7edddef8f53%3A0x9b6a54a6c1123aab!2sTurfExcel%20Sports%20Arena!5e0!3m2!1sen!2sin!4v1643439560887!5m2!1sen!2sin"
               width="100%"
               height="450"
-              className=" border-4 rounded-lg"
+              className=" border-4 rounded-lg shadow-2xl"
               // allowFullScreen=""
               loading="lazy"
             ></iframe>

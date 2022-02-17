@@ -10,7 +10,7 @@ function Input(props) {
 
   if (props.type === "phone") {
     type = "number";
-    className = ` bg-white flex p-0 justify-between ${props.className}`;
+    className = ` bg-white flex p-0 justify-between shadow-2xl ${props.className} `;
   }
 
   // let onBlur = () => {
@@ -42,7 +42,7 @@ function Input(props) {
           <p className=" text-gray-400"> +91</p>
           <input
             {...props}
-            className="w-11/12 mx-1 outline-none"
+            className="w-11/12 mx-1 outline-none "
             type={type}
             min="0"
             // onblur={onBlur}
@@ -54,16 +54,20 @@ function Input(props) {
   } else if (props.type === "text" || !props.type || props.type === "number") {
     return (
       <>
-        <input {...props} type={type} />
+        <input
+          {...props}
+          type={type}
+          className={`${props.className} py-2  px-4 `}
+        />
         {errorMessageJSX}
       </>
     );
   } else {
     return (
       <>
-        <div className="mx-auto px-4 py-2 flex justify-between w-full bg-white rounded-full">
+        <div className="mx-auto px-4 py-2 flex justify-between w-full bg-white rounded-full shadow-2xl">
           <label className="">{props.label}</label>
-          <input {...props} className={props.className} type={type} />
+          <input {...props} className={`${props.className} px-2`} type={type} />
         </div>
         {errorMessageJSX}
       </>

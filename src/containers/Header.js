@@ -169,7 +169,7 @@ class Header extends React.Component {
                 })
               }
             >
-              <div className="absolute right-4 -bottom-11 bg-primary-txt rounded-t-full rounded-b-full duration-500 ease-in-out">
+              <div className="absolute right-4 -bottom-11 shadow-2xl bg-primary-txt rounded-t-full rounded-b-full duration-500 ease-in-out">
                 {this.contactList.map((contact) => {
                   return (
                     <Link href={contact.link}>
