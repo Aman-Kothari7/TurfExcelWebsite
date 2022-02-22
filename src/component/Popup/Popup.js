@@ -42,6 +42,7 @@ class Popup extends Component {
             <img
               className="w-full py-7 px-8 max-h-half-screen object-cover "
               src={img}
+              alt="current model image"
             />
           </div>
         </div>{" "}

@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://turfexcel.in
+
+# Sitemaps
+Sitemap: https://turfexcel.in/sitemap.xml

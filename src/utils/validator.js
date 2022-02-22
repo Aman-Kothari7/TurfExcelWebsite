@@ -1,114 +1,120 @@
-const _isAllValid = {};
+class Validator {
+  constructor() {
+    this._isAllValid = {};
+  }
+  isNotEmail = (email) => {
+    const isValid = !!String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
 
-export const isNotEmail = (email) => {
-  const isValid = !!String(email)
-    .toLowerCase()
-    .match(
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    );
+    if (isValid) {
+      delete this._isAllValid.email;
+      return false;
+    } else {
+      this._isAllValid.email = false;
+      return "Please enter a valid email";
+    }
+  };
 
-  if (isValid) {
-    delete _isAllValid.email;
+  isNotPhoneNumber = (phone) => {
+    if (!+phone || phone.length !== 10) {
+      this._isAllValid.phone = false;
+      return "Invalid Phone Number";
+    }
+
+    delete this._isAllValid.phone;
     return false;
-  } else {
-    return "Please enter a valid email";
-  }
-};
+  };
 
-export const isNotPhoneNumber = (phone) => {
-  if (!+phone || phone.length !== 10) {
-    _isAllValid.phone = false;
-    return "Invalid Phone Number";
-  }
+  isNotName = (name) => {
+    if (!name) {
+      this._isAllValid.name = false;
+      return "Name is Required";
+    }
 
-  delete _isAllValid.phone;
-  return false;
-};
-
-export const isNotName = (name) => {
-  if (!name) {
-    _isAllValid.name = false;
-    return "Name is Required";
-  }
-
-  delete _isAllValid.name;
-  return false;
-};
-
-export const isNotDate = (date) => {
-  if (!date) {
-    _isAllValid.endDate = false;
-    return "Date is Required";
-  }
-  date = new Date(date);
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-
-  if (today > date) {
-    _isAllValid.endDate = false;
-    return "Date Must be Today or Future Date";
-  }
-
-  delete _isAllValid.date;
-  return false;
-};
-
-const isGreaterThenNow = (time) => {
-  var now = new Date();
-  var d = new Date(time); // pass all the parameters you need to create the time
-  if (now.getTime() > d.getTime()) {
-    return true;
-  }
-
-  return false;
-};
-
-export const isNotStartTime = (time, min) => {
-  if (!time) {
-    _isAllValid.startDate = false;
-    return "Time is Required";
-  }
-  if (!min) {
-    delete _isAllValid.startDate;
+    delete this._isAllValid.name;
     return false;
-  }
+  };
 
-  if (min < time) {
-    return "Time must be less than End time";
-  }
+  isNotDate = (date) => {
+    if (!date) {
+      this._isAllValid.endDate = false;
+      return "Date is Required";
+    }
+    date = new Date(date);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
 
-  delete _isAllValid.startDate;
-  return false;
-};
+    if (today > date) {
+      this._isAllValid.endDate = false;
+      return "Date Must be Today or Future Date";
+    }
 
-export const isNotEndTime = (time, max) => {
-  if (!time) {
-    _isAllValid.endDate = false;
-    return "Time is Required";
-  }
-  if (!max) {
-    delete _isAllValid.endDate;
+    delete this._isAllValid.date;
     return false;
-  }
+  };
 
-  if (max > time) {
-    return "Time must be greater than start time";
-  }
+  isGreaterThenNow = (time) => {
+    var now = new Date();
+    var d = new Date(time); // pass all the parameters you need to create the time
+    if (now.getTime() > d.getTime()) {
+      return true;
+    }
 
-  delete _isAllValid.endDate;
-  return false;
-};
+    return false;
+  };
 
-export const isNotValidActivity = (activity) => {
-  if (!activity) {
-    _isAllValid.activity = false;
-    return "Activity is Required";
-  }
+  isNotStartTime = (time, min) => {
+    if (!time) {
+      this._isAllValid.startDate = false;
+      return "Time is Required";
+    }
+    if (!min) {
+      delete this._isAllValid.startDate;
+      return false;
+    }
 
-  delete _isAllValid.activity;
-  return false;
-};
+    if (min < time) {
+      return "Time must be less than End time";
+    }
 
-export const isAllInputsValid = () => {
-  return Object.keys(_isAllValid).length === 0;
-};
+    delete this._isAllValid.startDate;
+    return false;
+  };
+
+  isNotEndTime = (time, max) => {
+    if (!time) {
+      this._isAllValid.endDate = false;
+      return "Time is Required";
+    }
+    if (!max) {
+      delete this._isAllValid.endDate;
+      return false;
+    }
+
+    if (max > time) {
+      return "Time must be greater than start time";
+    }
+
+    delete this._isAllValid.endDate;
+    return false;
+  };
+
+  isNotValidActivity = (activity) => {
+    if (!activity) {
+      this._isAllValid.activity = false;
+      return "Activity is Required";
+    }
+
+    delete this._isAllValid.activity;
+    return false;
+  };
+
+  isAllInputsValid = () => {
+    return Object.keys(this._isAllValid).length === 0;
+  };
+}
+
+export default Validator;

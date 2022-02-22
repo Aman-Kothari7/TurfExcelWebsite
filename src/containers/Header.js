@@ -42,11 +42,25 @@ class Header extends React.Component {
   componentWillUnmount() {
     // window.removeEventListener("scroll", this.handleScroll);
   }
+  closeMenuAndContactBtn = () => {
+    this.setState({
+      isRightMenuOpen: false,
+      isFloatingContactOpen: false,
+    });
+  };
 
   render() {
     return (
       <React.Fragment>
         <div className="">
+          {this.state.isRightMenuOpen || this.state.isFloatingContactOpen ? (
+            <div
+              className="fixed bg-transparent w-full h-screen z-20"
+              onClick={this.closeMenuAndContactBtn}
+            ></div>
+          ) : (
+            <></>
+          )}
           <div
             className={`font-medium absolute z-20 text-5xl w-full flex justify-center items-center right-0 top-0  mr-0 mt-4`}
             ref={this.myRef}
@@ -104,7 +118,7 @@ class Header extends React.Component {
               </div>
             </div>
 
-            <button
+            <div
               className={`top-0 z-10 outline-none right-0 mr-6 fixed  text-sm  transform duration-1000 block mt-8 lg:hidden pl-10 remove-highlight`}
               onBlur={() =>
                 this.setState({
@@ -159,17 +173,17 @@ class Header extends React.Component {
                   </div>
                 </Link>
               </span>
-            </button>
+            </div>
             {/* Floating Icons */}
-            <button
-              className="w-full bottom-20 z-10 max-w-7xl m-auto h-10 fixed outline-none"
+            <div
+              className="w-full bottom-10 z-10 max-w-7xl m-auto h-10 fixed outline-none"
               onBlur={() =>
                 this.setState({
                   isFloatingContactOpen: false,
                 })
               }
             >
-              <div className="absolute right-4 -bottom-11 shadow-2xl bg-primary-txt rounded-t-full rounded-b-full duration-500 ease-in-out">
+              <div className="absolute right-4 -bottom-6 shadow-2xl bg-primary-txt rounded-t-full rounded-b-full duration-500 ease-in-out">
                 {this.contactList.map((contact) => {
                   return (
                     <Link href={contact.link}>
@@ -187,7 +201,7 @@ class Header extends React.Component {
                               : "block"
                           }`}
                           src={contact.img}
-                          alt={contact.name}
+                          alt={contact.name || "contact"}
                         />
                       </div>
                     </Link>
@@ -212,7 +226,7 @@ class Header extends React.Component {
                   alt="contact"
                 />
               </div>
-            </button>
+            </div>
           </div>
         </div>
       </React.Fragment>

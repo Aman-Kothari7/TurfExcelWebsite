@@ -15,9 +15,9 @@ const Footer = () => {
         src="/img/svg/top-ground.png"
         alt="ground"
       />
-      <h2 className="text-3xl md:text-4xl w-full text-center absolute font-primary top-28">
+      <p className="text-3xl md:text-4xl w-full text-center absolute font-primary top-28">
         Contact Us
-      </h2>
+      </p>
       <div className="w-full bg-secondary-bg">
         <div className="grid p-4 md:p-8 pt-20  max-w-2xl m-auto justify-between grid-cols-1 md:grid-cols-2">
           <div className="md:mx-auto">
@@ -43,7 +43,7 @@ const Footer = () => {
                 className="hover:underline"
                 href="mailto:turfexcel.in@gmail.com "
               >
-                turfexcel.in@gmail.com{" "}
+                turfexcel.in@gmail.com
               </a>
             </div>
           </div>
@@ -53,7 +53,11 @@ const Footer = () => {
             return (
               <div className="hover:bg-link rounded-lg cursor-pointer ">
                 <Link href={social.link}>
-                  <img src={social.img} className="" alt={social.name} />
+                  <img
+                    src={social.img}
+                    className=""
+                    alt={social.name || "social img"}
+                  />
                 </Link>
               </div>
             );

@@ -13,10 +13,7 @@ class Layout extends React.Component {
     return (
       <>
         <Head>
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1"
-          ></meta>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" type="image/svg+xml" href="favicon.svg" />
           <link rel="icon" type="image/png" href="favicon.png" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -25,6 +22,12 @@ class Layout extends React.Component {
             href="https://fonts.googleapis.com/css2?family=Noto+Serif&family=Playfair+Display&family=Roboto&display=swap"
             rel="stylesheet"
           />
+          {/* //KEYWORDS */}
+          <meta
+            name="keywords"
+            content={`${SEO.KEYWORDS}, ${SEO.ADV_KEYWORDS}`} //"turf, cricket turf, football turf, tennis,"
+          />
+          <meta name="author" content="Aman & Arayan" />
 
           <title>{`${this.props.title}`}</title>
           <meta
@@ -35,12 +38,10 @@ class Layout extends React.Component {
           <meta name="robots" content={"index, follow"} />
           <meta property="og:title" content={`${this.props.title}`} />
           <meta property="og:description" content={`${this.props.desc}`} />
-
           <meta property="og:url" content={PAGE_URL} />
           <meta property="og:site_name" content={`TurfExcel Sports`} />
           <meta name="twitter:title" content={`${this.props.title}`} />
           <meta name="twitter:description" content={this.props.desc} />
-
           <script type="application/ld+json">
             {JSON.stringify({
               "@context": "http://schema.org",
@@ -66,6 +67,44 @@ class Layout extends React.Component {
               "@type": "WebSite",
               name: SEO.NAME,
               url: PAGE_URL,
+            })}
+          </script>
+
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              name: "TurfExcel",
+              image: "",
+              "@id": "",
+              url: "https://turfexcel.in/",
+              telephone: "9321455375",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "Off Aarey Road",
+                addressLocality: "Mumbai",
+                postalCode: "400063",
+                addressCountry: "IN",
+              },
+              geo: {
+                "@type": "GeoCoordinates",
+                latitude: 19.1658034,
+                longitude: 72.8622279,
+              },
+              openingHoursSpecification: {
+                "@type": "OpeningHoursSpecification",
+                dayOfWeek: [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday",
+                  "Saturday",
+                  "Sunday",
+                ],
+                opens: "00:00",
+                closes: "23:59",
+              },
             })}
           </script>
         </Head>

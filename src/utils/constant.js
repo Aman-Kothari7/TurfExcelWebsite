@@ -3,13 +3,17 @@ export const SCREEN = {
   MD: "768",
 };
 
-export const PAGE_URL = "http://localhost:5001";
+export const PAGE_URL = "https://turfexcel.in";
 
 export const SEO = {
-  DESC: "Premium sports experience at an affordable price",
-  TITLE: "TurfExcel Sports Arena",
-  NAME: "TurfExcel Sports Arena",
-  PAGE_URL: "#",
+  DESC: "TurfExcel sports arena is the highest rooftop turf in Mumbai. We provide booking for football turf ,cricket turf , tennis, volleyball and Corporate events.",
+  TITLE: "TurfExcel Sports Arena: Best Turf in Mumbai",
+  NAME: "TurfExcel",
+  PAGE_URL: "https://turfexcel.in",
+  KEYWORDS:
+    "turf near me ,turf Goregaon ,turf Mumbai ,cricket turf goregaon ,cricket turf Mumbai ,football turf goregaon",
+  ADV_KEYWORDS:
+    "football turf ,astro turf ,turf field ,playground turf ,play football",
   ADDRESS:
     "TurfExcel Sports Arena, SUPREME BUSINESS PARK, B Wing,12th Floor, Hiranandani Gardens, Powai, Mumbai, Maharashtra 400076",
 };

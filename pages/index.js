@@ -8,8 +8,11 @@ import Button from "../src/component/Button/Button";
 import { SEO } from "../src/utils/constant";
 import Popup from "../src/component/Popup/Popup";
 import Input from "../src/component/Input/Input";
-import * as validator from "../src/utils/validator.js";
+import Validator from "../src/utils/validator.js";
 import { sendEmail, timeConvertToAmPm } from "../src/utils/utils";
+import EmailBox from "../src/component/EmailBox/EmailBox";
+
+const validator = new Validator();
 
 const videos = [
   { link: "./videos/vid1.mp4" },
@@ -127,7 +130,7 @@ const Home = () => {
 
   const newDate = new Date();
   return (
-    <Layout title="TurfExcel Sports" desc={SEO.DESC}>
+    <Layout title={SEO.TITLE} desc={SEO.DESC}>
       <Popup isOpen={isOpen} onBgClick={closeModelWindow} img={priceImg} />
       <CarouselGroup
         autoPlay
@@ -177,7 +180,7 @@ const Home = () => {
             <p
               className={`text-secondary-txt text-lg md:text-2xl mt-4 ${secondaryTextStyle}`}
             >
-              Premium sports experience at an affordable price
+              Premium sports experience at an <i> affordable price </i>
             </p>
           </div>
           <Button
@@ -195,8 +198,10 @@ const Home = () => {
           </div> */}
 
           <h2 className="text-3xl  md:text-5xl text-secondary-txt">
-            Highest Rooftop Turf in{" "}
-            <span className="text-primary-txt"> Mumbai</span>
+            Highest Rooftop Turf in
+            <span className="text-primary-txt">
+              <strong> Mumbai</strong>
+            </span>
           </h2>
         </div>
       </div>
@@ -216,12 +221,12 @@ const Home = () => {
                   alt={certified.title}
                   className="h-32 w-32 md:h-60 md:w-60 rounded-full m-auto object-cover shadow-2xl"
                 />
-                <div className="h-32 w-32 md:h-60 md:w-60 rounded-full border-4 bg-black opacity-30  center-positions  md:block absolute"></div>
-                <div
-                  className={`text-center p-1 rounded-lg bg-black bg-opacity-30 text-primary-txt center-positions  md:block absolute ${secondaryTextStyle} `}
+                {/* <div className="h-32 w-32 md:h-60 md:w-60 rounded-full border-4 bg-black opacity-30  center-positions  md:block absolute"></div> */}
+                <h2
+                  className={`text-center p-1 rounded-lg bg-black bg-opacity-50 text-primary-txt center-positions  md:block absolute ${secondaryTextStyle} `}
                 >
                   {certified.title}
-                </div>
+                </h2>
               </div>
             );
           })}
@@ -243,6 +248,7 @@ const Home = () => {
               label="View Price Chart"
               onClick={() => setIsOpen(true)}
             />
+            <p className="text-secondary-txt text-xs mt-2">24 hours Open</p>
           </div>
           <div className="mx-auto w-full max-w-xs">
             <Input
@@ -325,7 +331,6 @@ const Home = () => {
             </select>
             {showFormError ? (
               <p className=" text-red-300 text-md h-3">
-                {" "}
                 {validator.isNotValidActivity(formData.activity)}
               </p>
             ) : (
@@ -408,6 +413,7 @@ const Home = () => {
           <div className=""> &nbsp;</div>
         )}
         <div className="sm:block hidden w-full text-center m-auto mt-20">
+          <p className="text-secondary-txt text-lg mb-2">24 hours Open</p>
           <Button
             className="mx-auto max-w-xs py-2 text-center rounded-full"
             label="View Price Chart"
@@ -445,7 +451,7 @@ const Home = () => {
                   <img
                     src={facility.img}
                     alt={facility.title}
-                    className="w-full h-40  object-cover rounded-2xl border-4 cursor-pointer shadow-2xl"
+                    className="w-full h-40 object-cover rounded-2xl border-4 cursor-pointer shadow-2xl"
                   />
                   {/* <div
                     onClick={() => {
@@ -456,11 +462,11 @@ const Home = () => {
                   >
                     View
                   </div> */}
-                  <div
-                    className={`text-center text-secondary-bg  my-2 relative z-10  ${secondaryTextStyle} `}
+                  <p
+                    className={`text-center text-secondary-bg mt-6  my-2 relative z-10  ${secondaryTextStyle} `}
                   >
                     {facility.title}
-                  </div>
+                  </p>
                 </div>
               </>
             );
@@ -476,25 +482,11 @@ const Home = () => {
         secTitle="Join Us For Events!"
         id="events"
       >
-        <p className="text-center mx-auto text-secondary-bg max-w-xl my-4">
+        <h2 className="text-center mx-auto text-secondary-bg max-w-xl my-4">
           For all your queries regarding corporate events or bulk bookings drop
           in your email and we will get in touch with you.
-        </p>
-        <div className=" flex flex-col md:flex-row max-w-md sm:mx-auto  mt-12 mx-4 ">
-          <div className="w-full md:w-3/4 ">
-            <Input
-              placeholder="Email Id"
-              className="w-full rounded-full outline-none"
-              type="email"
-            />
-          </div>
-          <div className="w-2/4 md:w-1/4 mt-4 md:mt-0">
-            <Button
-              className="mx-1 w-32 py-2 text-center rounded-full"
-              label="Join Us"
-            />
-          </div>
-        </div>
+        </h2>
+        <EmailBox />
       </Section>
 
       {/* --- Location --- */}
@@ -517,9 +509,9 @@ const Home = () => {
             ></iframe>
           </div>
           <div className="hidden md:block w-3/12 m-6">
-            <h2 className="text-xl font-bold text-secondary-bg">
+            <p className="text-xl font-bold text-secondary-bg">
               TurfExcel Sports Arena
-            </h2>
+            </p>
             <p className=" text-sm text-secondary-bg  max-w-xs">
               SUPREME BUSINESS PARK, B Wing,12th Floor, Hiranandani Gardens,
               Powai, Mumbai, Maharashtra 400076

@@ -6,6 +6,7 @@ import Button from "../src/component/Button/Button";
 import Section from "../src/component/Section/Section";
 import Popup from "../src/component/Popup/Popup";
 import Input from "../src/component/Input/Input";
+import EmailBox from "../src/component/EmailBox/EmailBox";
 
 const videos = [
   { link: "/videos/vid1.mp4" },
@@ -28,7 +29,6 @@ const highLightContent = [
 const secondaryTextStyle = " text-lg md:text-2xl";
 
 function About(props) {
-  const [currBgVid, setCurrBgVid] = useState(0);
   const [isOpen, setIsOpen] = useState(0); //currHighLightImg
   const [currHighLightImg, setCurrHighLightImg] = useState(0);
 
@@ -67,79 +67,65 @@ function About(props) {
           onClick={gotoPrev}
           className="ml-2 bg-black p-2 rounded-lg bg-opacity-50  w-10 h-16 flex align-middle"
         >
-          <img src="/img/svg/left-arrow.png" className="w-full" />
+          <img src="/img/svg/left-arrow.png" className="w-full" alt="arrow" />
         </div>
         <div
           onClick={gotoNext}
           className="rotate-180 mr-2 bg-black bg-opacity-50 p-2 rounded-lg  w-10 h-16 flex align-middle "
         >
-          <img src="/img/svg/left-arrow.png" />
+          <img src="/img/svg/left-arrow.png" alt="arrow" />
         </div>
       </div>
     );
   };
   return (
-    <Layout title="TurfExcel Sports" desc={SEO.DESC}>
-      {/* <CarouselGroup
-        autoPlay
-        selectedItem={currBgVid}
-        infiniteLoop
-        showArrows={false}
-        // showIndicators={false}
-        transitionTime={1000}
-        interval={10000}
-        // stopOnHover={true}
-      >
-        {videos.map((vid) => {
-          return (
-            <>
-            
-
-              <video className="hero-videos" autoPlay muted loop playsInline>
-                <source src={vid.link} type="video/mp4" />
-           
-                Your browser does not support the video tag.
-              </video>
-            </>
-          );
-        })}
-      </CarouselGroup> */}
+    <Layout title={SEO.TITLE} desc={SEO.DESC}>
       <div className="h-screen">
-        <div className="flex justify-between max-w-6xl m-auto align-middle items-center h-full w-full ">
+        <div className="flex justify-center max-w-7xl m-auto align-middle items-center h-full w-full ">
           {/* align-middle justify-center items-center  */}
 
-          <div className="mx-4  md:w-2/3 relative z-10">
-            <p
-              className={`text-secondary-txt text-lg  md:text-2xl ${secondaryTextStyle}`}
-            >
-              TurfExcel aims to provide a premium sports and turf experience to
-              all sports enthusiasts. TurfExcel has launched its first sports
-              arena in Powai. It is the highest rooftop sports arena in Mumbai.
-              Players can enjoy their favourite sport alongside an amazing view
-              on a certified high quality turf. Whether you play cricket,
-              football or any other sport TurfExcel will provide an unmatched
-              experience.
-            </p>
+          <div className="mx-4 md:mx-0 md:w-1/2 relative z-10 bg-black bg-opacity-60 md:p-10 p-6  rounded-lg">
+            <div className="">
+              <p
+                className={`text-secondary-txt text-lg  md:text-2xl ${secondaryTextStyle}`}
+              >
+                <h1>
+                  TurfExcel aims to provide a premium sports and turf experience
+                  to all sports enthusiasts. TurfExcel has launched its first
+                  sports arena in Powai.
+                </h1>{" "}
+                <p className={` text-primary-txt`}>
+                  It is the highest rooftop sports arena in <i>Mumbai</i> .
+                  Players can enjoy their favorite sport alongside an amazing
+                  view on a certified high quality turf.
+                </p>
+                <br />
+                Whether you <b> play cricket, football or any other sport </b>
+                TurfExcel will provide an unmatched experience.
+              </p>
+            </div>
+
             <Button
               label="Book Now"
               link="/#booking-form"
-              className={` w-40 mt-10 md:w-52 text-lg md:text-2xl text-center rounded-full  ${secondaryTextStyle} `}
+              className={` w-40 mt-6 m-auto md:w-52 text-lg md:text-2xl text-center rounded-full  ${secondaryTextStyle} `}
             />
           </div>
           <div className="absolute w-full h-screen right-0 top-0 ">
             <img
               src="/img/png/certified1.jpeg"
               className="w-full h-full rounded-lg bottom-5 object-cover"
+              alt="turf image"
             />
           </div>
         </div>
-        <div
+        {/* <div
           className="absolute top-0 bg-radial w-full h-screen"
           style={{
             background:
               " radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(50,144,126,0.40) 0%, rgba(0,0,0,0.9500175070028011) 100%)",
           }}
-        ></div>
+        ></div> */}
       </div>
       {/* --- Gallery --- */}
       <Section className="" secTitle="Highlights" containerStyle="">
@@ -159,7 +145,7 @@ function About(props) {
                 >
                   <img
                     src={highL.img}
-                    alt={highL.title}
+                    alt={highL.title || "high light"}
                     onClick={() => {
                       setCurrHighLightImg(i);
                       setIsOpen(true);
@@ -175,11 +161,11 @@ function About(props) {
                   >
                     View
                   </div>
-                  <div
+                  <h2
                     className={`text-center text-secondary-bg  my-2 relative z-10  ${secondaryTextStyle} `}
                   >
                     {highL.title}
-                  </div>
+                  </h2>
                 </div>
               </>
             );
@@ -198,21 +184,7 @@ function About(props) {
           For all your queries regarding corporate events or bulk bookings drop
           in your email and we will get in touch with you.
         </p>
-        <div className=" flex flex-col md:flex-row max-w-md sm:mx-auto  mt-12 mx-4 ">
-          <div className="w-full md:w-3/4 ">
-            <Input
-              placeholder="Email Id"
-              className="w-full rounded-full outline-none"
-              type="email"
-            />
-          </div>
-          <div className="w-2/4 md:w-1/4 mt-4 md:mt-0">
-            <Button
-              className="mx-1 w-32 py-2 text-center rounded-full"
-              label="Join Us"
-            />
-          </div>
-        </div>
+        <EmailBox />
       </Section>
 
       <Section
@@ -234,9 +206,9 @@ function About(props) {
             ></iframe>
           </div>
           <div className="hidden md:block w-3/12 m-6">
-            <h2 className="text-xl font-bold text-secondary-bg">
+            <p className="text-xl font-bold text-secondary-bg">
               TurfExcel Sports Arena
-            </h2>
+            </p>
             <p className=" text-sm text-secondary-bg  max-w-xs">
               SUPREME BUSINESS PARK, B Wing,12th Floor, Hiranandani Gardens,
               Powai, Mumbai, Maharashtra 400076

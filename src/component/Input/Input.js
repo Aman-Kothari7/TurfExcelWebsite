@@ -27,10 +27,16 @@ function Input(props) {
     setErrorMessage(props.errorMessage);
   }, [props.errorMessage]);
 
-  // console.log(`>> errorMessage ${props.type}: `, errorMessage);
+  // console.log(`>> errorMessage ${props.type}: `, props.errorColor);
   errorMessageJSX =
     props.errorMessage && props.showError ? (
-      <p className=" text-red-300 text-md h-3">{errorMessage}</p>
+      <p
+        className={` ${
+          props.errorColor ? props.errorColor : "text-red-300"
+        } text-center w-full text-md h-3`}
+      >
+        {errorMessage}
+      </p>
     ) : (
       <p className="text-sm h-3"> &nbsp; </p>
     );
